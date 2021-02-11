@@ -1,1 +1,6 @@
-// bla bla
+void setup(){
+
+}
+void draw(){
+
+}
