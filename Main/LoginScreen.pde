@@ -6,6 +6,7 @@ class LoginScreen extends Screen
   CColor c;
   String nameInput;
   String passInput;
+  
   LoginScreen()
   {
   }
