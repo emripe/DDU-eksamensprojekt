@@ -1,4 +1,4 @@
-class LoginScreen
+class LoginScreen extends Screen
 {
   Button Login = cp5.addButton("Login");
   Textfield Username = cp5.addTextfield("Username");

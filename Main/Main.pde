@@ -2,6 +2,7 @@ import controlP5.*;
 import java.util.*;
 ControlP5 cp5;
 
+Screen currentScreen = new LoginScreen();
 
 void setup() {
   cp5 = new ControlP5(this);
@@ -9,5 +10,5 @@ void setup() {
 }
 
 void draw() {
-  screen.run();
+  currentScreen.run();
 }
