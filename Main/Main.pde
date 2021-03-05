@@ -1,14 +1,13 @@
 import controlP5.*;
 import java.util.*;
 ControlP5 cp5;
-LoginScreen test = new LoginScreen();
 
-void setup(){
+
+void setup() {
   cp5 = new ControlP5(this);
-  size(1200,800);
-  test.update();
+  size(1200, 800);
 }
 
-void draw(){
-
+void draw() {
+  screen.run();
 }
