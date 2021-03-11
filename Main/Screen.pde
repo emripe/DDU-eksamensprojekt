@@ -1,4 +1,3 @@
-
 class Screen
 {
   Screen()
