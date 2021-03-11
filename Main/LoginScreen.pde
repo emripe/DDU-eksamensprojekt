@@ -40,10 +40,10 @@ class LoginScreen extends Screen
     nameInput = Username.getText();
     passInput = Password.getText();
 
-    /*
+    
     if(Login.isMousePressed() == true)
      {
-     screen.status = 1;
-     }*/
+     screenStat = 1;
+     }
   }
 }
