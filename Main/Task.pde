@@ -1,0 +1,4 @@
+class Task
+{
+  int[] numbers;
+}
