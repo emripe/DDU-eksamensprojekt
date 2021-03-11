@@ -12,5 +12,7 @@ void setup() {
 }
 
 void draw() {
-
+  
+  Parameters p= new Parameters(2,0.7);
+  taskGenerator(p);
 }
