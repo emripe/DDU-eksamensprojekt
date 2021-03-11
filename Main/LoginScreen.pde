@@ -3,9 +3,10 @@ class LoginScreen extends Screen
   Button Login = cp5.addButton("Login");
   Textfield Username = cp5.addTextfield("Username");
   Textfield Password = cp5.addTextfield("Password");
-  CColor c;
+  CColor c = new CColor();
   String nameInput;
   String passInput;
+  PVector buttonPos = new PVector(width/2-75, height/3*2);
   
   LoginScreen()
   {
@@ -13,9 +14,8 @@ class LoginScreen extends Screen
 
   void run()
   {
-    PVector buttonPos = new PVector(width/2-75, height/3*2);
     background(221, 239, 255);
-    c = new CColor()
+    c
       .setActive(color(0, 69, 50))
       .setBackground(color(0, 108, 79))
       .setForeground(color(0, 86, 63));
@@ -39,12 +39,11 @@ class LoginScreen extends Screen
 
     nameInput = Username.getText();
     passInput = Password.getText();
-    
+
     /*
     if(Login.isMousePressed() == true)
-    {
-      screen.status = 1;
-    }*/
-    
+     {
+     screen.status = 1;
+     }*/
   }
 }
