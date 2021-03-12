@@ -12,11 +12,8 @@ Task taskGenerator(Parameters parameter) {
     } else { // sum af de to tal er mindst 10
       dig2 = int(random(9-dig1, 9));
     }
-    //println (num1, " ", num2);
-    num1 *= pow(10,i);
-    num2 *= pow(10,i);
-    num1 += dig1;
-    num2 += dig2;
+    num1 = num1*10+dig1;
+    num2 = num1*10+dig2;
     lowerBound=0;
   }
   Task task = new Task(num1,num2);
