@@ -1,6 +1,12 @@
-class StatisticsDetailedScreen extends Screen
+class StatisticsDetailedScreen
 {
-  void run()
+  StatisticsDetailedScreen()
+  {
+  }
+  void Update()
+  {
+  }
+  void Close()
   {
   }
 }

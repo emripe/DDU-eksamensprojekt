@@ -1,6 +1,12 @@
 class RulesScreen extends Screen
 {
-  void run()
+  public RulesScreen()
+  {
+  }
+  void Update()
+  {
+  }
+  void Close()
   {
   }
 }

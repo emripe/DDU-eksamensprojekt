@@ -4,7 +4,7 @@ class TaskScreen extends Screen
   String calcAnswer;
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
-  void run()
+  void TaskScreen()
   {
     background(154, 195, 223);
     info.setText(calcInfo)
@@ -16,5 +16,11 @@ class TaskScreen extends Screen
       .setPosition(width/4*3, 450);
       
     calcAnswer = calcInput.getText();
+  }
+  void Update()
+  {
+  }
+  void Close()
+  {
   }
 }

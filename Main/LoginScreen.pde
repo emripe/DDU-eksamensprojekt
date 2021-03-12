@@ -10,10 +10,6 @@ class LoginScreen extends Screen
   
   LoginScreen()
   {
-  }
-
-  void run()
-  {
     background(221, 239, 255);
     c
       .setActive(color(0, 69, 50))
@@ -36,14 +32,27 @@ class LoginScreen extends Screen
       .setSize(200, 30)
       .setColor(c)
       .setColorLabel(0);
+  }
+
+  void Update()
+  {
+    
 
     nameInput = Username.getText();
     passInput = Password.getText();
 
     
     if(Login.isMousePressed() == true)
-     {
-     screenStat = 1;
-     }
+    {
+      Close();
+      currentScreen = new MainScreen();
+    }
+    
+  }
+  void Close()
+  {
+    Login.remove();
+    Username.remove();
+    Password.remove();
   }
 }

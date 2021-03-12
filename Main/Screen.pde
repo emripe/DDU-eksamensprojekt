@@ -3,8 +3,10 @@ class Screen
   Screen()
   {
   }
-
-  void run()
+  void Update()
+  {
+  }
+  void Close()
   {
   }
 }

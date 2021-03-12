@@ -9,7 +9,7 @@ class MainScreen extends Screen
   int s = 250;
 
 
-  void run()
+  void Update()
   {
     background(221, 239, 255);
 
@@ -42,5 +42,8 @@ class MainScreen extends Screen
       .setPosition(width-100-s, s)
       .setSize(s, s)
       .setColor(cB);
+  }
+  void Close()
+  {
   }
 }

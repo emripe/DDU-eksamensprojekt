@@ -6,11 +6,12 @@ Task taskGenerator(Parameters parameter) {
   int lowerBound=1;
 
   for (int i=0; i<digits; i++) {
-    dig1=int(random(lowerBound,9));
     if (random(1) > carryRatio) { // sum af de to tal er max 10
+      dig1=int(random(lowerBound,9));
       dig2 = int(random(lowerBound, 9-dig1));
     } else { // sum af de to tal er mindst 10
-      dig2 = int(random(9-dig1, 9));
+      dig1=int(random(1,9));
+      dig2 = int(random(10-dig1, 9));
     }
     num1 = num1*10+dig1;
     num2 = num1*10+dig2;
