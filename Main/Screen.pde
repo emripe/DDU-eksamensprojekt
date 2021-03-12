@@ -9,4 +9,8 @@ class Screen
   void Close()
   {
   }
+  void HandleEvent(ControlEvent theEvent)
+  {
+    
+  }
 }

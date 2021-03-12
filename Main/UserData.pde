@@ -1,4 +1,4 @@
-class UserData {
+ class UserData {
   String username;
   float money;
   int round = 1;

@@ -1,10 +1,15 @@
 class MachineLearning
 {
-  Parameters GenerateParameters()
+  Parameters GenerateParameters(Parameters params)
   {
-
-    int digits = round(random(1,3));
-    float carryRatio = random(1);
+    int digits = 0;
+    float carryRatio = 0;
+    
+    if (params == null)
+    {    
+      digits = round(random(1,3));
+      carryRatio = random(1);
+    }
     
     Parameters p = new Parameters(digits, carryRatio);
     println("generated parameters:");
