@@ -1,6 +1,7 @@
 import controlP5.*;
 ControlP5 cp5;
 Screen currentScreen;
+MachineLearning ml = new MachineLearning();
 
 void setup() {
   cp5 = new ControlP5(this);
@@ -11,4 +12,9 @@ void setup() {
 void draw() {
   
   currentScreen.Update();
+}
+
+void controlEvent(ControlEvent theEvent)
+{
+  currentScreen.HandleEvent(theEvent);
 }
