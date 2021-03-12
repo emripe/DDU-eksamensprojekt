@@ -1,6 +1,12 @@
 class RulesDetailedScreen extends Screen
 {
-  void run()
+  public RulesDetailedScreen()
+  {
+  }
+  void Update()
+  {
+  }
+  void Close()
   {
   }
 }

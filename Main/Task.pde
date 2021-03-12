@@ -1,14 +1,14 @@
 class Task
 {
-  int[] numbers;
+  long[] numbers;
   
-  Task(int[] numbers)
+  Task(long[] numbers)
   {
     this.numbers = numbers;
   }
   
-  Task(int a, int b)
+  Task(long a, long b)
   {
-    numbers = new int[] {a, b};
+    numbers = new long[] {a, b};
   }
 }
