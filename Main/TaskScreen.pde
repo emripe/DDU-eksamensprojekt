@@ -27,7 +27,8 @@ class TaskScreen extends Screen
     calcInput
       .setSize(200, 60)
       .setPosition(width/5+40, height/2)
-      .setColor(c);
+      .setColor(c)
+      .setLabelVisible(false);
 
     answerButton
       .activateBy(ControlP5.RELEASE)
@@ -44,7 +45,7 @@ class TaskScreen extends Screen
     calcAnswer = calcInput.getText();
     fill(123, 156, 178);
     rect(width/5, 0, 20, height);
-    fill(255);
+    fill(235);
     rect(width/5+30, 50, 900, 700, 10);
   }
   void Close()
