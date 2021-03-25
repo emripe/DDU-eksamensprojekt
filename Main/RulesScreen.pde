@@ -5,7 +5,8 @@ class RulesScreen extends Screen
   Button multiplikation = cp5.addButton("multiplikation");
   CColor cA = new CColor();
   int s = 250;
-  void Update()
+  
+  RulesScreen()
   {
     background(249, 158, 184);
     cA
@@ -25,5 +26,9 @@ class RulesScreen extends Screen
       .setPosition(width-100-s, s)
       .setSize(s, s)
       .setColor(cA);
+  }
+  
+  void Close()
+  {
   }
 }

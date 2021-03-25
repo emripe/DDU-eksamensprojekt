@@ -8,7 +8,7 @@ class MainScreen extends Screen
   CColor cG = new CColor();
   int s = 250;
 
-  void Update()
+  MainScreen()
   {
     background(221, 239, 255);
 
@@ -42,19 +42,24 @@ class MainScreen extends Screen
       .setSize(s, s)
       .setColor(cB);
       
-    if(regneregler.isMousePressed() == true){
-      Close();
-      currentScreen = new RulesScreen();
-    }
-    else if(opgaver.isMousePressed() == true){
-      Close();
-      currentScreen = new TaskScreen();
-    }
   }
   void Close()
   {
     regneregler.remove();
     resultater.remove();
     opgaver.remove();
+  }
+  void HandleEvent(ControlEvent theEvent)
+  {
+    if (theEvent.getController().getName() == "regneregler")
+    {
+      Close();
+      currentScreen = new RulesScreen();
+    }
+    if (theEvent.getController().getName() == "opgaver")
+    {
+      Close();
+      currentScreen = new TaskScreen();
+    }
   }
 }
