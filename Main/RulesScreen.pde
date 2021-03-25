@@ -27,6 +27,7 @@ class RulesScreen extends Screen
       .setSize(s, s)
       .setColor(cA);
   }
+  
   void Close()
   {
   }
