@@ -8,12 +8,14 @@ class TaskScreen extends Screen
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
-  PFont infoFont = createFont("Segoe UI", 32);
-  PFont answerFont = createFont("Segoe UI", 20);
-  PFont calcFont = createFont("Segoe UI", 20);
+  
+  int taskIndex = 0;
+  int startTime;
+  
+  int[] times = new int[5];
+  
   TaskScreen()
   {
-
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -21,30 +23,28 @@ class TaskScreen extends Screen
 
 
     info
-      .setSize(1000, 100)
-      .setPosition(800, 415)
-      .setText("")
-      .setColor(color(0))
-      .setFont(infoFont);
+      .setSize(1000, 30)
+      .setPosition(800, 400)
+      .setText("popoo")
+      .setColor(color(0));
 
 
     calcInput
       .setSize(200, 60)
       .setPosition(width/5+40, height/2)
       .setColor(c)
-      .setLabel("");
+      .setLabelVisible(false);
 
     answerButton
       .activateBy(ControlP5.RELEASE)
       .setPosition(width/5+40, height/2-35)
-      .setSize(100, 30)
-      .setFont(answerFont);
+      .setSize(100, 30);
 
 
 
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null));
-    Task t = currentTaskSet.tasks[0];
-    info.setText(t.numbers[0] + " + " + t.numbers[1]);
+    startTask();
+    
   }
   void Update()
   {
@@ -54,14 +54,17 @@ class TaskScreen extends Screen
     rect(width/5, 0, 20, height);
     fill(235);
     rect(width/5+30, 50, 900, 700, 10);
-    fill(195, 205, 212);
-    rect(750, height/2+55, 200,10);
   }
   void Close()
   {
   }
-
-  int i = 0;
+  
+  void startTask()
+  {
+    info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+    startTime = millis();
+  }
+  
   void HandleEvent(ControlEvent theEvent)
   {
     // answer button pressed
@@ -69,19 +72,37 @@ class TaskScreen extends Screen
     {
       println("hej");
       println(Long.parseLong(calcAnswer));
-      println(currentTaskSet.tasks[i].getAnswer());
-      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[i].getAnswer())
+      println(currentTaskSet.tasks[taskIndex].getAnswer());
+      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[taskIndex].getAnswer())
       {
         println("correct");
-      } else
+      }
+      else
         println("wrong");
 
+      
+      times[taskIndex] = millis() - startTime;
+      println("time: " + times[taskIndex]);
 
-      Task t = GenerateTask(ml.GenerateParameters(null));
-      //Task t = taskGenerator(new Parameters(i, 0.5));
-      info.setText(t.numbers[0] + " + " + t.numbers[1]);
-      i++;
-      info.setText(currentTaskSet.tasks[i].numbers[0] + " + " + currentTaskSet.tasks[i].numbers[1]);
+      if (taskIndex == 4)
+      {
+        int avg = 0;
+        for (int i = 0; i < 5; i++)
+        {
+          avg += times[i];
+        }
+        avg /= 5;
+        println("avg: " + avg);
+        
+        // save data here. avg & currentTaskSet.params
+      }
+      else
+      {
+        taskIndex++;
+        startTask();
+      }
+      
+      
     }
   }
 }
