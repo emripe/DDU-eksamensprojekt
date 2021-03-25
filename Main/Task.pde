@@ -11,4 +11,9 @@ class Task
   {
     numbers = new long[] {a, b};
   }
+  
+  public long getAnswer()
+  {
+    return numbers[0] + numbers[1];
+  }
 }
