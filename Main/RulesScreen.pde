@@ -21,6 +21,5 @@ class RulesScreen extends Screen
       .setPosition(75+(s+50), 100)
       .setSize(s, s)
       .setColor(cA);
-    multiplikation
   }
 }

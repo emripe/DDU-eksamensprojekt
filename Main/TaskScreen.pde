@@ -21,6 +21,9 @@ class TaskScreen extends Screen
       .activateBy(ControlP5.RELEASE);
       
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null));
+    Task t = currentTaskSet.tasks[0];
+    info.setText(t.numbers[0] + " + " + t.numbers[1]);
+    
   }
   void Update()
   {
@@ -30,18 +33,27 @@ class TaskScreen extends Screen
   void Close()
   {
   }
-  int i = 1;
+  
+  int i = 0;
   void HandleEvent(ControlEvent theEvent)
   {
+    // answer button pressed
     if (theEvent.getController().getName() == "svar")
     {
       println("hej");
+      println(Long.parseLong(calcAnswer));
+      println(currentTaskSet.tasks[i].getAnswer());
+      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[i].getAnswer())
+      {
+        println("correct");
+      }
+      else
+        println("wrong");
       
-      
-      Task t = GenerateTask(ml.GenerateParameters(null));
-      //Task t = taskGenerator(new Parameters(i, 0.5));
-      info.setText(t.numbers[0] + " + " + t.numbers[1]);
       i++;
+      info.setText(currentTaskSet.tasks[i].numbers[0] + " + " + currentTaskSet.tasks[i].numbers[1]);
+      
+      
     }
   }
   
