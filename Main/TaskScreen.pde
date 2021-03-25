@@ -8,9 +8,14 @@ class TaskScreen extends Screen
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
+  
+  int taskIndex = 0;
+  int startTime;
+  
+  int[] times = new int[5];
+  
   TaskScreen()
   {
-
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -37,8 +42,7 @@ class TaskScreen extends Screen
 
 
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null));
-    Task t = currentTaskSet.tasks[0];
-    info.setText(t.numbers[0] + " + " + t.numbers[1]);
+    startTask();
     
   }
   void Update()
@@ -54,7 +58,12 @@ class TaskScreen extends Screen
   {
   }
   
-  int i = 0;
+  void startTask()
+  {
+    info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+    startTime = millis();
+  }
+  
   void HandleEvent(ControlEvent theEvent)
   {
     // answer button pressed
@@ -62,20 +71,35 @@ class TaskScreen extends Screen
     {
       println("hej");
       println(Long.parseLong(calcAnswer));
-      println(currentTaskSet.tasks[i].getAnswer());
-      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[i].getAnswer())
+      println(currentTaskSet.tasks[taskIndex].getAnswer());
+      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[taskIndex].getAnswer())
       {
         println("correct");
       }
       else
         println("wrong");
 
+      
+      times[taskIndex] = millis() - startTime;
+      println("time: " + times[taskIndex]);
 
-      Task t = GenerateTask(ml.GenerateParameters(null));
-      //Task t = taskGenerator(new Parameters(i, 0.5));
-      info.setText(t.numbers[0] + " + " + t.numbers[1]);
-      i++;
-      info.setText(currentTaskSet.tasks[i].numbers[0] + " + " + currentTaskSet.tasks[i].numbers[1]);
+      if (taskIndex == 4)
+      {
+        int avg = 0;
+        for (int i = 0; i < 5; i++)
+        {
+          avg += times[i];
+        }
+        avg /= 5;
+        println("avg: " + avg);
+        
+        // save data here. avg & currentTaskSet.params
+      }
+      else
+      {
+        taskIndex++;
+        startTask();
+      }
       
       
     }
