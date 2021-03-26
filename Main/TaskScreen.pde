@@ -72,8 +72,10 @@ class TaskScreen extends Screen
   {
     background(154, 195, 223);
     fill(123, 156, 178);
+    stroke(123, 156, 178);
     rect(width/5, 0, 20, height);
     fill(235);
+    stroke(235);
     rect(width/5+30, 100, 900, 650, 10);
   }
   void Close()
@@ -83,7 +85,7 @@ class TaskScreen extends Screen
     taskProgress.remove();
     calcInput.remove();
     answerButton.remove();
-    
+    tilbage.remove();
   }
   
   void startTask()

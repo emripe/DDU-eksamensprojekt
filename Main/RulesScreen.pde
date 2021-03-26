@@ -31,7 +31,7 @@ class RulesScreen extends Screen
       .setColor(cA)
       .setFont(DefaultFont);
     tilbage
-      .setPosition(50, 50)
+      .setPosition(20, 20)
       .setSize(200, 50)
       .setColor(cA)
       .setFont(DefaultFont);
