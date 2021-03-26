@@ -27,14 +27,16 @@ class LoginScreen extends Screen
       .setSize(200, 30)
       .setColor(c)
       .setColorLabel(0)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setColorCaptionLabel(color(128, 144, 194));
 
     Password 
       .setPosition(buttonPos.x-25, buttonPos.y - 70)
       .setSize(200, 30)
       .setColor(c)
       .setColorLabel(0)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setColorCaptionLabel(color(128, 144, 194));
   }
 
   void Update()
@@ -49,14 +51,14 @@ class LoginScreen extends Screen
     {
       File file = dataFile("data/" + nameInput +".txt");
       boolean existingUser;
-      
+
       String filePath = file.getPath();
       existingUser = file.isFile();
-      
+
       if (existingUser == true) 
       {           // tjek om password passer
         String[] lines = loadStrings(file);
-        
+
         if (!lines[0].equals(passInput)) 
         {
           return;
