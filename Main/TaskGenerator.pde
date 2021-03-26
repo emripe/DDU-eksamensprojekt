@@ -1,7 +1,7 @@
 Task GenerateTask(Parameters params) {
   long dig1=0, dig2=0;
   long num1=0, num2=0;
-  long digits = params.digits;
+  long digits = round(params.digits);
   float carryRatio = params.carryRatio;
   long lowerBound=1;
 

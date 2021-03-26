@@ -68,11 +68,12 @@ class TaskScreen extends Screen
   void HandleEvent(ControlEvent theEvent)
   {
     // answer button pressed
-    if (theEvent.getController().getName() == "svar")
+    if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
-      println("hej");
-      println(Long.parseLong(calcAnswer));
-      println(currentTaskSet.tasks[taskIndex].getAnswer());
+      calcInput.clear();
+      println("guess: " + Long.parseLong(calcAnswer));
+      println("answer" + currentTaskSet.tasks[taskIndex].getAnswer());
+      
       if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[taskIndex].getAnswer())
       {
         println("correct");
@@ -101,8 +102,6 @@ class TaskScreen extends Screen
         taskIndex++;
         startTask();
       }
-      
-      
     }
   }
 }
