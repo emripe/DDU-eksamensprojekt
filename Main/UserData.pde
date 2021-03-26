@@ -36,7 +36,6 @@ class UserData {
   Parameters getBestDataPoints() { 
     
     // returner de parametre hvor tiden kom tættest på det optimale tidsrum (10 sek?)
-    if ()
     
 
     return(bestDataPoints);
