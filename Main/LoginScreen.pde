@@ -19,19 +19,22 @@ class LoginScreen extends Screen
     Login
       .setPosition(buttonPos.x, buttonPos.y)
       .setSize(150, 30)
-      .setColor(c);
+      .setColor(c)
+      .setFont(DefaultFont);
 
     Username 
-      .setPosition(buttonPos.x-25, buttonPos.y - 100)
+      .setPosition(buttonPos.x-25, buttonPos.y - 150)
       .setSize(200, 30)
       .setColor(c)
-      .setColorLabel(0);
+      .setColorLabel(0)
+      .setFont(DefaultFont);
 
     Password 
-      .setPosition(buttonPos.x-25, buttonPos.y - 50)
+      .setPosition(buttonPos.x-25, buttonPos.y - 70)
       .setSize(200, 30)
       .setColor(c)
-      .setColorLabel(0);
+      .setColorLabel(0)
+      .setFont(DefaultFont);
   }
 
   void Update()

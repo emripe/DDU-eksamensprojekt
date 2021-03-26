@@ -30,17 +30,20 @@ class MainScreen extends Screen
     regneregler
       .setPosition(100, s)
       .setSize(s, s)
-      .setColor(cR);
+      .setColor(cR)
+      .setFont(DefaultFont);
 
     resultater
       .setPosition(300+175, s)
       .setSize(s, s)
-      .setColor(cG);
+      .setColor(cG)
+      .setFont(DefaultFont);
 
     opgaver
       .setPosition(width-100-s, s)
       .setSize(s, s)
-      .setColor(cB);
+      .setColor(cB)
+      .setFont(DefaultFont);
     println("hej");
   }
   void Close()

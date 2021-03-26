@@ -32,24 +32,25 @@ class StatisticsScreen extends Screen
     }
     statButtons[0]
       .setLabel("Addition")
-      .setFont(font);
+      .setFont(DefaultFont);
 
     statButtons[1]
       .setLabel("Subtraktion")
-      .setFont(font);
+      .setFont(DefaultFont);
 
     statButtons[2]
       .setLabel("Division")
-      .setFont(font);
+      .setFont(DefaultFont);
 
     statButtons[3]
       .setLabel("Multiplikation")
-      .setFont(font);
+      .setFont(DefaultFont);
 
     tilbage
       .setPosition(20, 20)
       .setSize(200, 50)
-      .setColor(cG);
+      .setColor(cG)
+      .setFont(DefaultFont);
   }
   void Update()
   {

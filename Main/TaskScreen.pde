@@ -27,19 +27,22 @@ class TaskScreen extends Screen
     title
       .setPosition(width/5+40, 20)
       .setText("Addition +")
-      .setColor(color(0));
+      .setColor(color(0))
+      .setFont(DefaultFont);
 
     info
       .setSize(1000, 30)
       .setPosition(800, 400)
       .setText("popoo")
-      .setColor(color(0));
+      .setColor(color(0))
+      .setFont(DefaultFont);
 
     taskProgress
       .setSize(1000, 30)
       .setPosition(200, 400)
       .setText("popoo")
-      .setColor(color(0));
+      .setColor(color(0))
+      .setFont(DefaultFont);
 
     calcInput
       .setSize(200, 60)
@@ -52,12 +55,14 @@ class TaskScreen extends Screen
     answerButton
       .activateBy(ControlP5.RELEASE)
       .setPosition(width/5+40, height/2-35)
-      .setSize(100, 30);
+      .setSize(100, 30)
+      .setFont(DefaultFont);
 
     tilbage
       .setPosition(20, 20)
       .setSize(200, 50)
-      .setColor(cB);
+      .setColor(cB)
+      .setFont(DefaultFont);
 
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
     startTask();

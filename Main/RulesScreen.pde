@@ -18,19 +18,23 @@ class RulesScreen extends Screen
     addition
       .setPosition(100, s)
       .setSize(s, s)
-      .setColor(cA);
+      .setColor(cA)
+      .setFont(DefaultFont);
     subtraktion
       .setPosition(300+175, s)
       .setSize(s, s)
-      .setColor(cA);
+      .setColor(cA)
+      .setFont(DefaultFont);
     multiplikation
       .setPosition(width-100-s, s)
       .setSize(s, s)
-      .setColor(cA);
+      .setColor(cA)
+      .setFont(DefaultFont);
     tilbage
       .setPosition(50, 50)
       .setSize(200, 50)
-      .setColor(cA);
+      .setColor(cA)
+      .setFont(DefaultFont);
   }
   
   void Close()
