@@ -5,10 +5,7 @@ class TaskScreen extends Screen
   String calcAnswer;
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
-  Textarea taskProgress = cp5.addTextarea("taskProgress");
-  Textarea title = cp5.addTextarea("title");
   Button answerButton = cp5.addButton("svar");
-  Button tilbage = cp5.addButton("tilbage");
   CColor c = new CColor();
   CColor cB = new CColor();
   
@@ -24,10 +21,6 @@ class TaskScreen extends Screen
       .setBackground(color(195, 205, 212))
       .setForeground(color(223, 231, 237));
 
-    title
-      .setPosition(width/5+40, 20)
-      .setText("Addition +")
-      .setColor(color(0));
 
     info
       .setSize(1000, 30)
@@ -35,18 +28,11 @@ class TaskScreen extends Screen
       .setText("popoo")
       .setColor(color(0));
 
-    taskProgress
-      .setSize(1000, 30)
-      .setPosition(200, 400)
-      .setText("popoo")
-      .setColor(color(0));
 
     calcInput
       .setSize(200, 60)
       .setPosition(width/5+40, height/2)
       .setColor(c)
-      .setColorCaptionLabel(color(0))
-      .setColorValue(color(0))
       .setLabelVisible(false);
 
     answerButton
@@ -54,49 +40,40 @@ class TaskScreen extends Screen
       .setPosition(width/5+40, height/2-35)
       .setSize(100, 30);
 
-    tilbage
-      .setPosition(20, 20)
-      .setSize(200, 50)
-      .setColor(cB);
 
-    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
+
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null));
     startTask();
     
   }
   void Update()
   {
     background(154, 195, 223);
+    calcAnswer = calcInput.getText();
     fill(123, 156, 178);
     rect(width/5, 0, 20, height);
     fill(235);
-    rect(width/5+30, 100, 900, 650, 10);
+    rect(width/5+30, 50, 900, 700, 10);
   }
   void Close()
   {
-    title.remove();
-    info.remove();
-    taskProgress.remove();
-    calcInput.remove();
-    answerButton.remove();
-    
   }
   
   void startTask()
   {
     info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
-    taskProgress.setText((taskIndex+1) + "/5");
     startTime = millis();
   }
   
   void HandleEvent(ControlEvent theEvent)
   {
     // answer button pressed
-    if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
+    if (theEvent.getController().getName() == "svar")
     {
-      println("guess: " + Long.parseLong(calcInput.getText()));
-      println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
-     
-      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+      println("hej");
+      println(Long.parseLong(calcAnswer));
+      println(currentTaskSet.tasks[taskIndex].getAnswer());
+      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[taskIndex].getAnswer())
       {
         println("correct");
       }
@@ -118,22 +95,14 @@ class TaskScreen extends Screen
         println("avg: " + avg);
         
         // save data here. avg & currentTaskSet.params
-        
-        taskIndex = 0;
-        println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
-        startTask();
       }
       else
       {
         taskIndex++;
         startTask();
       }
-    }
-    if (theEvent.getController().getName() == "tilbage")
-    {
-      Close();
-      currentScreen = new MainScreen();
+      
+      
     }
   }
 }

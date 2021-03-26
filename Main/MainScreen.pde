@@ -61,5 +61,10 @@ class MainScreen extends Screen
       Close();
       currentScreen = new TaskScreen();
     }
+    if (theEvent.getController().getName() == "resultater")
+    {
+      Close();
+      currentScreen = new StatisticsScreen();
+    }
   }
 }
