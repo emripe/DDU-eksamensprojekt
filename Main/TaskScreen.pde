@@ -123,6 +123,7 @@ class TaskScreen extends Screen
         println("avg: " + avg);
         
         // save data here. avg & currentTaskSet.params
+        user.saveNewData(avg,currentTaskSet.params);
         
         taskIndex = 0;
         println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
