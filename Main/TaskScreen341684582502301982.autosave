@@ -3,6 +3,7 @@ class TaskScreen extends Screen
   TaskSet currentTaskSet;
   String calcInfo;
   String calcAnswer;
+  
   Button tilbage = cp5.addButton("tilbage");
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
@@ -19,6 +20,12 @@ class TaskScreen extends Screen
   
   TaskScreen()
   {
+    
+    tilbage
+      .setPosition(20, 20)
+      .setSize(200, 50)
+      .setColor(cB);
+      
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -47,17 +54,13 @@ class TaskScreen extends Screen
       .setColor(c)
       .setColorCaptionLabel(color(0))
       .setColorValue(color(0))
-      .setLabel("");
+      .setLabelVisible(false);
 
     answerButton
       .activateBy(ControlP5.RELEASE)
       .setPosition(width/5+40, height/2-35)
       .setSize(100, 30);
 
-    tilbage
-      .setPosition(20, 20)
-      .setSize(200, 50)
-      .setColor(cB);
 
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
     startTask();
@@ -73,11 +76,13 @@ class TaskScreen extends Screen
   }
   void Close()
   {
+    
     title.remove();
     info.remove();
     taskProgress.remove();
     calcInput.remove();
     answerButton.remove();
+    tilbage.remove();
     
   }
   

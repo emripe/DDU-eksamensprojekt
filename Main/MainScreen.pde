@@ -41,7 +41,7 @@ class MainScreen extends Screen
       .setPosition(width-100-s, s)
       .setSize(s, s)
       .setColor(cB);
-      
+    println("hej");
   }
   void Close()
   {
