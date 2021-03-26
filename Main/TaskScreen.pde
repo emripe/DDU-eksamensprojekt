@@ -5,6 +5,7 @@ class TaskScreen extends Screen
   String calcAnswer;
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
+  Textarea taskProgress = cp5.addTextarea("taskProgress");
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
@@ -28,6 +29,11 @@ class TaskScreen extends Screen
       .setText("popoo")
       .setColor(color(0));
 
+    taskProgress
+      .setSize(1000, 30)
+      .setPosition(200, 400)
+      .setText("popoo")
+      .setColor(color(0));
 
     calcInput
       .setSize(200, 60)
@@ -42,14 +48,13 @@ class TaskScreen extends Screen
 
 
 
-    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null,0));
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
     startTask();
     
   }
   void Update()
   {
     background(154, 195, 223);
-    calcAnswer = calcInput.getText();
     fill(123, 156, 178);
     rect(width/5, 0, 20, height);
     fill(235);
@@ -62,18 +67,19 @@ class TaskScreen extends Screen
   void startTask()
   {
     info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+    taskProgress.setText((taskIndex+1) + "/5");
     startTime = millis();
   }
   
   void HandleEvent(ControlEvent theEvent)
   {
     // answer button pressed
-    if (theEvent.getController().getName() == "svar")
+    if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
-      println("hej");
-      println(Long.parseLong(calcAnswer));
-      println(currentTaskSet.tasks[taskIndex].getAnswer());
-      if (Long.parseLong(calcAnswer) == currentTaskSet.tasks[taskIndex].getAnswer())
+      println("guess: " + Long.parseLong(calcInput.getText()));
+      println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
+     
+      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
       {
         println("correct");
       }
@@ -95,14 +101,17 @@ class TaskScreen extends Screen
         println("avg: " + avg);
         
         // save data here. avg & currentTaskSet.params
+        
+        taskIndex = 0;
+        println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
+        startTask();
       }
       else
       {
         taskIndex++;
         startTask();
       }
-      
-      
     }
   }
 }
