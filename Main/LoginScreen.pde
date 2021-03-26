@@ -64,7 +64,7 @@ class LoginScreen extends Screen
           return;
         }
       }
-      UserData user = new UserData(existingUser, nameInput, passInput); 
+      user = new UserData(existingUser, nameInput, passInput); 
       Close();
       currentScreen = new MainScreen();
     }

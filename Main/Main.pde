@@ -3,6 +3,7 @@ ControlP5 cp5;
 PFont DefaultFont;
 Screen currentScreen;
 MachineLearning ml = new MachineLearning();
+UserData user;
 
 void setup() {
   cp5 = new ControlP5(this);

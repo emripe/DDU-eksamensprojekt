@@ -7,34 +7,36 @@ class UserData {
   String userData;
   boolean existingUser;
   String[] lines;
-  File user; 
+  File userFile; 
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
     this.password = password;
     this.existingUser = existingUser;
     
-    user = dataFile("data/" + userName +".txt");
+    userFile = dataFile("data/" + userName +".txt");
     
     if (existingUser == true){
-      String[] lines = loadStrings(user);
+      lines = loadStrings(userFile);
     }
     
     if (existingUser == false){ //opret bruger
-      createWriter(user);
-      String[] lines = new String[1];
+      createWriter(userFile);
+      lines = new String[1];
       lines[0]=password;
-      saveStrings(user, lines); // 1. linje i filen bliver ens password
+      saveStrings(userFile, lines); // 1. linje i filen bliver ens password
       existingUser=true;
     }
   }
   
   
   void saveNewData(float time, Parameters parameter){
+    println("kaldt");
     String newLine = str(time)+";"+parameter.digits+";"+parameter.carryRatio;
-    lines = new String[lines.length+1];
-    lines[lines.length-1]=newLine;
-    saveStrings(user,lines);
+    println(lines.length);
+    lines = append(lines, newLine);
+    saveStrings(userFile,lines);
+    println(lines.length);
   }
   
   
