@@ -6,6 +6,7 @@ class TaskScreen extends Screen
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
   Textarea taskProgress = cp5.addTextarea("taskProgress");
+  Textarea title = cp5.addTextarea("title");
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
@@ -22,6 +23,10 @@ class TaskScreen extends Screen
       .setBackground(color(195, 205, 212))
       .setForeground(color(223, 231, 237));
 
+    title
+      .setPosition(width/5+40, 20)
+      .setText("Addition +")
+      .setColor(color(0));
 
     info
       .setSize(1000, 30)
@@ -39,6 +44,8 @@ class TaskScreen extends Screen
       .setSize(200, 60)
       .setPosition(width/5+40, height/2)
       .setColor(c)
+      .setColorCaptionLabel(color(0))
+      .setColorValue(color(0))
       .setLabelVisible(false);
 
     answerButton
@@ -58,7 +65,7 @@ class TaskScreen extends Screen
     fill(123, 156, 178);
     rect(width/5, 0, 20, height);
     fill(235);
-    rect(width/5+30, 50, 900, 700, 10);
+    rect(width/5+30, 100, 900, 650, 10);
   }
   void Close()
   {
