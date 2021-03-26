@@ -3,14 +3,22 @@ class StatisticsScreen extends Screen
   int ButtonCount = 4;
   PImage add = loadImage("2+2.png");
   CColor cW = new CColor();
+  CColor cG = new CColor();
   Button[] statButtons = new Button[ButtonCount];
+  Button tilbage = cp5.addButton("tilbage");
   PFont font = createFont("Times New Roman", 22);
   StatisticsScreen()
   {
     cW
-    .setActive(color(200))
-    .setForeground(color(220))
-    .setBackground(color(230));
+      .setActive(color(200))
+      .setForeground(color(220))
+      .setBackground(color(230));
+
+    cG
+      .setActive(color(92, 135, 110))
+      .setBackground(color(122, 180, 146))
+      .setForeground(color(107, 158, 128));
+      
     for (int i = 0; i < ButtonCount; i++)
     {
       statButtons[i] = cp5.addButton("Button "+i);
@@ -18,25 +26,30 @@ class StatisticsScreen extends Screen
       {
         statButtons[i]
           .setSize(200, 200)
-          .setPosition(i*300+50, 20)
+          .setPosition(i*300+50, 100)
           .setColor(cW);
       }
     }
     statButtons[0]
-    .setLabel("Addition")
-    .setFont(font);
-   
+      .setLabel("Addition")
+      .setFont(font);
+
     statButtons[1]
-    .setLabel("Subtraktion")
-    .setFont(font);
-    
+      .setLabel("Subtraktion")
+      .setFont(font);
+
     statButtons[2]
-    .setLabel("Division")
-    .setFont(font);
-    
+      .setLabel("Division")
+      .setFont(font);
+
     statButtons[3]
-    .setLabel("Multiplikation")
-    .setFont(font);
+      .setLabel("Multiplikation")
+      .setFont(font);
+
+    tilbage
+      .setPosition(20, 20)
+      .setSize(200, 50)
+      .setColor(cG);
   }
   void Update()
   {
@@ -44,5 +57,19 @@ class StatisticsScreen extends Screen
   }
   void Close()
   {
+    for (int i = 0; i < ButtonCount; i++)
+    {
+      statButtons[i].remove();
+    }
+    tilbage.remove();
+  }
+
+  void HandleEvent(ControlEvent theEvent)
+  {
+    if (theEvent.getController().getName() == "tilbage")
+    {
+      Close();
+      currentScreen = new MainScreen();
+    }
   }
 }

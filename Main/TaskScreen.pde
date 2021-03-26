@@ -47,7 +47,7 @@ class TaskScreen extends Screen
       .setColor(c)
       .setColorCaptionLabel(color(0))
       .setColorValue(color(0))
-      .setLabelVisible(false);
+      .setLabel("");
 
     answerButton
       .activateBy(ControlP5.RELEASE)
