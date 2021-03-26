@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  
+  println("yo");
   currentScreen.Update();
 }
 
