@@ -9,19 +9,15 @@ class UserData {
   String[] lines;
   File user; 
   
-  UserData (boolean newUser, String userName, String password) {
+  UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
     this.password = password;
+    this.existingUser = existingUser;
     
     user = dataFile("data/" + userName +".txt");
-    String filePath = user.getPath();
-    existingUser = user.isFile();
     
-    if (existingUser == true){           // tjek om password passer
+    if (existingUser == true){
       String[] lines = loadStrings(user);
-      if (lines[0]!=password){
-        existingUser=false;
-      }
     }
     
     if (existingUser == false){ //opret bruger
@@ -30,7 +26,6 @@ class UserData {
       lines[0]=password;
       saveStrings(user, lines); // 1. linje i filen bliver ens password
       existingUser=true;
-      //String[] lines = {password};
     }
   }
   

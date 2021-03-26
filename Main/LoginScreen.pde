@@ -7,7 +7,7 @@ class LoginScreen extends Screen
   String nameInput;
   String passInput;
   PVector buttonPos = new PVector(width/2-75, height/3*2);
-  
+
   LoginScreen()
   {
     background(221, 239, 255);
@@ -36,18 +36,33 @@ class LoginScreen extends Screen
 
   void Update()
   {
-    
+
 
     nameInput = Username.getText();
     passInput = Password.getText();
 
-    
-    if(Login.isMousePressed() == true)
+
+    if (Login.isMousePressed() == true)
     {
+      File file = dataFile("data/" + nameInput +".txt");
+      boolean existingUser;
+      
+      String filePath = file.getPath();
+      existingUser = file.isFile();
+      
+      if (existingUser == true) 
+      {           // tjek om password passer
+        String[] lines = loadStrings(file);
+        
+        if (!lines[0].equals(passInput)) 
+        {
+          return;
+        }
+      }
+      UserData user = new UserData(existingUser, nameInput, passInput); 
       Close();
       currentScreen = new MainScreen();
     }
-    
   }
   void Close()
   {

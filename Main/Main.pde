@@ -8,7 +8,7 @@ void setup() {
   cp5 = new ControlP5(this);
   DefaultFont = createFont("Garamond", 22);
   size(1200, 800);
-  currentScreen = new MainScreen();
+  currentScreen = new LoginScreen();
 }
 
 void draw() {
