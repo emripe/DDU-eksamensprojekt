@@ -6,7 +6,7 @@ MachineLearning ml = new MachineLearning();
 void setup() {
   cp5 = new ControlP5(this);
   size(1200, 800);
-  currentScreen = new MainScreen();
+  currentScreen = new StatisticsScreen();
 }
 
 void draw() {
