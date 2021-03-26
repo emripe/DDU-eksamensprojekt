@@ -42,7 +42,7 @@ class TaskScreen extends Screen
 
 
 
-    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null));
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
     startTask();
     
   }
