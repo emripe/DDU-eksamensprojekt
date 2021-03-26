@@ -39,7 +39,7 @@ class TaskScreen extends Screen
       .setSize(200, 60)
       .setPosition(width/5+40, height/2)
       .setColor(c)
-      .setLabelVisible(false);
+      .setLabel("");
 
     answerButton
       .activateBy(ControlP5.RELEASE)

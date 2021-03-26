@@ -1,6 +1,7 @@
 class StatisticsScreen extends Screen
 {
   int ButtonCount = 4;
+  PImage add = loadImage("2+2.png");
   CColor cW = new CColor();
   Button[] statButtons = new Button[ButtonCount];
   PFont font = createFont("Times New Roman", 22);
