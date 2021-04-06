@@ -1,4 +1,4 @@
-class MachineLearning
+ class MachineLearning
 {
   int minDataPoints = 0;
   Parameters GenerateParameters(Parameters baseParams, int dataCount)
@@ -13,15 +13,12 @@ class MachineLearning
     }
     else
     {
-      digits = random(baseParams.digits-0.4, baseParams.digits+0.4);
-      carryRatio = constrain(random(baseParams.carryRatio - 0.1, baseParams.carryRatio + 0.1), 0, 1);
+      digits = random(baseParams.digits-(1/(dataCount-3)), baseParams.digits+(1/(dataCount-3)));
+      carryRatio = constrain(random(baseParams.carryRatio - (1/(dataCount-3)), baseParams.carryRatio + (1/(dataCount-3))), 0, 1);
     }
     
     Parameters p = new Parameters(digits, carryRatio);
-    println("generated parameters:");
-    println("digits: " + p.digits);
-    println("carryRatio: " + p.carryRatio);
-    
+    println("digits: " + p.digits + ", carry: " + p.carryRatio);
     return p;
   }
 }

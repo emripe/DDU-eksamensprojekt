@@ -44,7 +44,6 @@ class MainScreen extends Screen
       .setSize(s, s)
       .setColor(cB)
       .setFont(DefaultFont);
-    println("hej");
   }
   void Close()
   {

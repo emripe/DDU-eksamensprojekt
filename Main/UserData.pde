@@ -31,7 +31,6 @@ class UserData {
   
   
   void saveNewData(float time, Parameters parameter){
-    println("kaldt");
     String newLine = str(time)+";"+parameter.digits+";"+parameter.carryRatio;
     println(lines.length);
     lines = append(lines, newLine);

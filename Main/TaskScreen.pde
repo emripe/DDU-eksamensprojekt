@@ -101,6 +101,7 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
+      /*
       println("guess: " + Long.parseLong(calcInput.getText()));
       println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
      
@@ -110,10 +111,10 @@ class TaskScreen extends Screen
       }
       else
         println("wrong");
-
+      */
       
       times[taskIndex] = millis() - startTime;
-      println("time: " + times[taskIndex]);
+      //println("time: " + times[taskIndex]);
 
       if (taskIndex == 4)
       {
@@ -123,13 +124,13 @@ class TaskScreen extends Screen
           avg += times[i];
         }
         avg /= 5;
-        println("avg: " + avg);
+        //println("avg: " + avg);
         
         // save data here. avg & currentTaskSet.params
         user.saveNewData(avg,currentTaskSet.params);
         
         taskIndex = 0;
-        println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+        //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
         currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
         startTask();
       }
