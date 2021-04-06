@@ -4,9 +4,9 @@ class StatisticsScreen extends Screen
   PImage add = loadImage("2+2.png");
   CColor cW = new CColor();
   CColor cG = new CColor();
+  CColor cB = new CColor();
   Button[] statButtons = new Button[ButtonCount];
   Button tilbage = cp5.addButton("tilbage");
-  PFont font = createFont("Times New Roman", 22);
   StatisticsScreen()
   {
     cW
@@ -18,7 +18,12 @@ class StatisticsScreen extends Screen
       .setActive(color(92, 135, 110))
       .setBackground(color(122, 180, 146))
       .setForeground(color(107, 158, 128));
-      
+
+    cB
+      .setActive(color(177, 206, 250))
+      .setBackground(color(153, 181, 225))
+      .setForeground(color(165, 195, 242));
+
     for (int i = 0; i < ButtonCount; i++)
     {
       statButtons[i] = cp5.addButton("Button "+i);
@@ -27,7 +32,7 @@ class StatisticsScreen extends Screen
         statButtons[i]
           .setSize(200, 200)
           .setPosition(i*300+50, 100)
-          .setColor(cW);
+          .setColor(cB);
       }
     }
     statButtons[0]
