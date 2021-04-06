@@ -45,9 +45,17 @@ class LoginScreen extends Screen
     
     nameInput = Username.getText();
     passInput = Password.getText();
-
-
-    if (Login.isMousePressed() == true)
+  }
+  void Close()
+  {
+    Login.remove();
+    Username.remove();
+    Password.remove();
+  }
+  void HandleEvent(ControlEvent theEvent)
+  {
+    
+    if (theEvent.getController().getName() == "Login")
     {
       File file = dataFile("data/" + nameInput +".txt");
       boolean existingUser;
@@ -68,11 +76,5 @@ class LoginScreen extends Screen
       Close();
       currentScreen = new MainScreen();
     }
-  }
-  void Close()
-  {
-    Login.remove();
-    Username.remove();
-    Password.remove();
   }
 }

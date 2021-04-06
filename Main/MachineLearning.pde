@@ -8,7 +8,7 @@
     
     if (baseParams == null || dataCount < minDataPoints)
     {    
-      digits = random(1,3);
+      digits = random(1,2.5);
       carryRatio = random(1);
     }
     else
