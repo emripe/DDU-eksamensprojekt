@@ -11,6 +11,7 @@ class TaskScreen extends Screen
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
+  String [] datasetTemp = new String[4];
   
   int taskIndex = 0;
   int startTime;
@@ -26,7 +27,7 @@ class TaskScreen extends Screen
 
     title
       .setPosition(width/5+40, 20)
-      .setText("Addition +")
+      .setText("")
       .setColor(color(0))
       .setFont(DefaultFont);
 
@@ -103,6 +104,7 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
+      
       /*
       println("guess: " + Long.parseLong(calcInput.getText()));
       println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
@@ -126,7 +128,7 @@ class TaskScreen extends Screen
           avg += times[i];
         }
         avg /= 5;
-        //println("avg: " + avg);
+        println("avg: " + avg);
         
         // save data here. avg & currentTaskSet.params
         user.saveNewData(avg,currentTaskSet.params);
