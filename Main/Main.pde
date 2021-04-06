@@ -7,7 +7,7 @@ UserData user;
 
 void setup() {
   cp5 = new ControlP5(this);
-  DefaultFont = createFont("Calibri", 22);
+  DefaultFont = createFont("Arial", 22);
   size(1200, 800);
   currentScreen = new LoginScreen();
 }
