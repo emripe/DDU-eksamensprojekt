@@ -31,13 +31,10 @@ class UserData {
   
   
   void saveNewData(float time, Parameters parameter){
-    println("kaldt");
     String newLine = str(time)+";"+parameter.digits+";"+parameter.carryRatio;
-    println(lines.length);
     lines = append(lines, newLine);
     saveStrings(userFile,lines);
-    println(lines.length);
-  }
+    }
   
   
   Parameters getBestDataPoints(int optimalTime) { 
@@ -63,5 +60,11 @@ class UserData {
     float[] taskInfo = float(split(lines[bestNum],";"));
     bestDataPoints = new Parameters(int(taskInfo[1]), taskInfo[2]);
     return(bestDataPoints);
+  }
+  
+  
+  int dataCount(){
+    int num = lines.length-1;
+    return (num);
   }
 }
