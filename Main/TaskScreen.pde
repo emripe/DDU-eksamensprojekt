@@ -11,7 +11,7 @@ class TaskScreen extends Screen
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
-  String [] datasetTemp = new String[4];
+  String fileString;
   
   int taskIndex = 0;
   int startTime;
@@ -102,7 +102,11 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
-      
+      user.taskCounter++;
+      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+      {
+        user.taskCounterCorrect++;
+      }
       /*
       println("guess: " + Long.parseLong(calcInput.getText()));
       println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
@@ -127,10 +131,8 @@ class TaskScreen extends Screen
         }
         avg /= 5;
         println("avg: " + avg);
-        
         // save data here. avg & currentTaskSet.params
         user.saveNewData(avg,currentTaskSet.params);
-        
         taskIndex = 0;
         //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
         currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));

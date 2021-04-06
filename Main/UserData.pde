@@ -7,7 +7,9 @@ class UserData {
   String userData;
   boolean existingUser;
   String[] lines;
-  File userFile; 
+  File userFile;
+  int taskCounter;
+  int taskCounterCorrect;
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
@@ -22,8 +24,10 @@ class UserData {
     
     if (existingUser == false){ //opret bruger
       createWriter(userFile);
-      lines = new String[1];
+      lines = new String[3];
       lines[0]=password;
+      lines[1]=str(taskCounter);
+      lines[2]=str(taskCounterCorrect);
       saveStrings(userFile, lines); // 1. linje i filen bliver ens password
       existingUser=true;
     }
