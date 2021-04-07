@@ -2,18 +2,17 @@ class StatisticsScreen extends Screen
 {
   int ButtonCount = 4;
   PImage add = loadImage("2+2.png");
-  CColor cW = new CColor();
+  
+  //Tilbageknap oprettes
+  Button tilbage = cp5.addButton("tilbage");
+  //Variabler af typen CColor oprettes
   CColor cG = new CColor();
   CColor cB = new CColor();
+  //Array af typen Button opstilles for at kunne oprette statistik knapper
   Button[] statButtons = new Button[ButtonCount];
-  Button tilbage = cp5.addButton("tilbage");
   StatisticsScreen()
   {
-    cW
-      .setActive(color(200))
-      .setForeground(color(220))
-      .setBackground(color(230));
-
+    //Aspekter af farver defineres, baggrund, forgrund/mouseover, og aktivering af knap
     cG
       .setActive(color(92, 135, 110))
       .setBackground(color(122, 180, 146))
@@ -23,7 +22,7 @@ class StatisticsScreen extends Screen
       .setActive(color(177, 206, 250))
       .setBackground(color(153, 181, 225))
       .setForeground(color(165, 195, 242));
-
+    //Statistik knapper oprettes, størrelse position, farve og font sættes 
     for (int i = 0; i < ButtonCount; i++)
     {
       statButtons[i] = cp5.addButton("Button "+i);
@@ -32,25 +31,24 @@ class StatisticsScreen extends Screen
         statButtons[i]
           .setSize(200, 200)
           .setPosition(i*300+50, 100)
-          .setColor(cB);
+          .setColor(cB)
+          .setFont(DefaultFont);
       }
     }
+    //Labels på knapperne sættes så der kan kendes forskel
     statButtons[0]
-      .setLabel("Addition")
-      .setFont(DefaultFont);
+      .setLabel("Addition");
 
     statButtons[1]
-      .setLabel("Subtraktion")
-      .setFont(DefaultFont);
+      .setLabel("Subtraktion");
 
     statButtons[2]
-      .setLabel("Division")
-      .setFont(DefaultFont);
+      .setLabel("Division");
 
     statButtons[3]
-      .setLabel("Multiplikation")
-      .setFont(DefaultFont);
+      .setLabel("Multiplikation");
 
+    //Tilbageknap tegnes
     tilbage
       .setPosition(20, 20)
       .setSize(200, 50)
@@ -65,17 +63,39 @@ class StatisticsScreen extends Screen
   {
     for (int i = 0; i < ButtonCount; i++)
     {
-      statButtons[i].remove();
+      cp5.remove(statButtons[i].getName());
     }
-    tilbage.remove();
+    cp5.remove("tilbage");
   }
 
   void HandleEvent(ControlEvent theEvent)
   {
-    if (theEvent.getController().getName() == "tilbage")
+    switch(theEvent.getController().getName())
     {
-      Close();
-      currentScreen = new MainScreen();
+      case "tilbage":
+        Close();
+        currentScreen = new MainScreen();
+        break;
+  
+      case "Button 0":
+        Close();
+        currentScreen = new StatisticsDetailedScreen();
+        break;
+  
+      case "Button 1":
+        Close();
+        currentScreen = new StatisticsDetailedScreen();
+        break;
+  
+      case "Button 2":
+        Close();
+        currentScreen = new StatisticsDetailedScreen();
+        break;
+  
+      case "Button 3":
+        Close();
+        currentScreen = new StatisticsDetailedScreen();
+        break;
     }
   }
 }

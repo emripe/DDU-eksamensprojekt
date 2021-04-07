@@ -11,15 +11,19 @@ class TaskScreen extends Screen
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
-  String [] datasetTemp = new String[4];
-  
+  String fileString;
   int taskIndex = 0;
   int startTime;
   
+  
   int[] times = new int[5];
+  
+  CalcType calcType = CalcType.addition;
   
   TaskScreen()
   {
+    user.taskCounter = int(user.lines[1]);
+    user.taskCounterCorrect = int(user.lines[2]);
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -65,10 +69,8 @@ class TaskScreen extends Screen
       .setSize(200, 50)
       .setColor(cB)
       .setFont(DefaultFont);
-    if (user.dataCount() == 0)
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
-    else
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4), user.dataCount()));
+
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
     startTask();
     
   }
@@ -104,46 +106,58 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
-      
-      /*
-      println("guess: " + Long.parseLong(calcInput.getText()));
-      println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
-     
-      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+      if (!calcInput.getText().equals(""))
       {
-        println("correct");
-      }
-      else
-        println("wrong");
-      */
-      
-      times[taskIndex] = millis() - startTime;
-      //println("time: " + times[taskIndex]);
-
-      if (taskIndex == 4)
-      {
-        int avg = 0;
-        for (int i = 0; i < 5; i++)
+        
+        user.taskCounter++;
+        println(user.taskCounter);
+        user.lines[1] = str(user.taskCounter);
+        if(Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
-          avg += times[i];
+          println("yoink");
+          user.taskCounterCorrect++;
+          user.lines[2] = str(user.taskCounterCorrect);
+          
         }
-        avg /= 5;
-        println("avg: " + avg);
+        saveStrings(user.userFile, user.lines);
+        /*
+        println("guess: " + Long.parseLong(calcInput.getText()));
+        println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
+       
+        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+        {
+          println("correct");
+        }
+        else
+          println("wrong");
+        */
         
-        // save data here. avg & currentTaskSet.params
-        user.saveNewData(avg,currentTaskSet.params);
-        
-        taskIndex = 0;
-        //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-        //currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
-        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4), user.dataCount()));
-        startTask();
+        times[taskIndex] = millis() - startTime;
+        //println("time: " + times[taskIndex]);
+  
+        if (taskIndex == 4)
+        {
+          int avg = 0;
+          for (int i = 0; i < 5; i++)
+          {
+            avg += times[i];
+          }
+          avg /= 5;
+          println("avg: " + avg);
+          // save data here. avg & currentTaskSet.params
+          user.saveNewData(avg,currentTaskSet.params, calcType);
+          taskIndex = 0;
+          //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1), calcType);
+          startTask();
+        }
+        else
+        {
+          taskIndex++;
+          startTask();
+        }
       }
-      else
-      {
-        taskIndex++;
-        startTask();
-      }
+      
     }
     if (theEvent.getController().getName() == "tilbage")
     {

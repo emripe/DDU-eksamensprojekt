@@ -5,6 +5,14 @@ Screen currentScreen;
 MachineLearning ml = new MachineLearning();
 UserData user;
 
+enum CalcType
+{
+  addition,
+  subtraction,
+  multiplication,
+  division
+}
+
 void setup() {
   cp5 = new ControlP5(this);
   DefaultFont = createFont("Arial", 22);
@@ -13,7 +21,6 @@ void setup() {
 }
 
 void draw() {
-  
   currentScreen.Update();
 }
 
