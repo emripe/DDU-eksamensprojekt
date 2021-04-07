@@ -13,7 +13,6 @@ void setup() {
 }
 
 void draw() {
-  
   currentScreen.Update();
 }
 

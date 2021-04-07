@@ -12,14 +12,15 @@ class TaskScreen extends Screen
   CColor c = new CColor();
   CColor cB = new CColor();
   String fileString;
-  
   int taskIndex = 0;
   int startTime;
+  
   
   int[] times = new int[5];
   
   TaskScreen()
   {
+
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -102,47 +103,58 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
-      user.taskCounter++;
-      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+      if (!calcInput.getText().equals(""))
       {
-        user.taskCounterCorrect++;
-      }
-      /*
-      println("guess: " + Long.parseLong(calcInput.getText()));
-      println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
-     
-      if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-      {
-        println("correct");
-      }
-      else
-        println("wrong");
-      */
-      
-      times[taskIndex] = millis() - startTime;
-      //println("time: " + times[taskIndex]);
-
-      if (taskIndex == 4)
-      {
-        int avg = 0;
-        for (int i = 0; i < 5; i++)
+        
+        user.taskCounter++;
+        println(user.taskCounter);
+        user.lines[1] = str(user.taskCounter);
+        if(Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
-          avg += times[i];
+          println("yoink");
+          user.taskCounterCorrect++;
+          user.lines[2] = str(user.taskCounterCorrect);
+          
         }
-        avg /= 5;
-        println("avg: " + avg);
-        // save data here. avg & currentTaskSet.params
-        user.saveNewData(avg,currentTaskSet.params);
-        taskIndex = 0;
-        //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
-        startTask();
+        saveStrings(user.userFile, user.lines);
+        /*
+        println("guess: " + Long.parseLong(calcInput.getText()));
+        println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
+       
+        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+        {
+          println("correct");
+        }
+        else
+          println("wrong");
+        */
+        
+        times[taskIndex] = millis() - startTime;
+        //println("time: " + times[taskIndex]);
+  
+        if (taskIndex == 4)
+        {
+          int avg = 0;
+          for (int i = 0; i < 5; i++)
+          {
+            avg += times[i];
+          }
+          avg /= 5;
+          println("avg: " + avg);
+          // save data here. avg & currentTaskSet.params
+          user.saveNewData(avg,currentTaskSet.params);
+          taskIndex = 0;
+          //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
+          startTask();
+        }
+        else
+        {
+          taskIndex++;
+          startTask();
+        }
       }
-      else
-      {
-        taskIndex++;
-        startTask();
-      }
+      
     }
     if (theEvent.getController().getName() == "tilbage")
     {
