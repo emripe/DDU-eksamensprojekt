@@ -18,9 +18,12 @@ class TaskScreen extends Screen
   
   int[] times = new int[5];
   
+  CalcType calcType = CalcType.addition;
+  
   TaskScreen()
   {
-
+    user.taskCounter = int(user.lines[1]);
+    user.taskCounterCorrect = int(user.lines[2]);
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -67,7 +70,7 @@ class TaskScreen extends Screen
       .setColor(cB)
       .setFont(DefaultFont);
 
-    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0));
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
     startTask();
     
   }
@@ -142,10 +145,10 @@ class TaskScreen extends Screen
           avg /= 5;
           println("avg: " + avg);
           // save data here. avg & currentTaskSet.params
-          user.saveNewData(avg,currentTaskSet.params);
+          user.saveNewData(avg,currentTaskSet.params, calcType);
           taskIndex = 0;
           //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1));
+          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1), calcType);
           startTask();
         }
         else

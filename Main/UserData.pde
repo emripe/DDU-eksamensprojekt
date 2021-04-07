@@ -9,6 +9,8 @@ class UserData {
   String[] lines; // kan gemme alt som filen indeholder
   int additionPos, subtractionPos, multiplicationPos, divisionPos; 
   File userFile; 
+  int taskCounter;
+  int taskCounterCorrect;
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
@@ -24,12 +26,12 @@ class UserData {
     
     if (existingUser == false){ //opret bruger
       createWriter(userFile);
-      lines = new String[5];
+      lines = new String[7];
       lines[0]=password;
-      lines[1]="addition";
-      lines[2]="subtraction";
-      lines[3]="multiplication";
-      lines[4]="division";
+      lines[3]="addition";
+      lines[4]="subtraction";
+      lines[5]="multiplication";
+      lines[6]="division";
       additionPos=1;
       subtractionPos=2;
       multiplicationPos=3;
@@ -61,6 +63,7 @@ class UserData {
   void saveNewData(float time, Parameters parameter, CalcType calcType){ // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
     String newLine = time/1000+";"+parameter.digits+";"+parameter.carryRatio;
     
+    findPos();
     switch (calcType)
     {
       case addition:
@@ -127,7 +130,7 @@ class UserData {
   
   
   int dataCount(){ // sum af alle rengearter
-    int num = lines.length-5; // -5 er for hver af de linjer som ikke indeholder data om resultaterne
+    int num = lines.length-additionPos-4;
     return (num);
   }
   
