@@ -59,7 +59,7 @@ class UserData {
   
   
   void saveNewData(float time, Parameters parameter, CalcType calcType){ // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
-    String newLine = str(time)+";"+parameter.digits+";"+parameter.carryRatio;
+    String newLine = time/1000+";"+parameter.digits+";"+parameter.carryRatio;
     
     switch (calcType)
     {
@@ -121,7 +121,7 @@ class UserData {
     }
     
     float[] taskInfo = float(split(lines[bestNum],";"));
-    bestDataPoints = new Parameters(int(taskInfo[1]), taskInfo[2]);
+    bestDataPoints = new Parameters(taskInfo[1], taskInfo[2]);
     return(bestDataPoints);
   }
   
