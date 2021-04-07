@@ -18,12 +18,15 @@ class StatisticsDetailedScreen extends Screen
       .setActive(color(92, 135, 110))
       .setBackground(color(122, 180, 146))
       .setForeground(color(107, 158, 128));
-
+/*
     println(user.taskCounterCorrect/user.taskCounter);
     float correctValue = (float(user.taskCounterCorrect)/float(user.taskCounter))*360;
     float wrongValue = ((float(user.taskCounter-user.taskCounterCorrect))/float(user.taskCounter)*360);
     println("correctValue = "+correctValue+" and wrongValue = "+wrongValue);
-    angles = new float[] {correctValue, wrongValue};
+*/
+  float correctValue = 50;
+  float wrongValue = 50;
+  angles = new float[] {correctValue, wrongValue};
 
     tilbage
       .setPosition(20, 20)
