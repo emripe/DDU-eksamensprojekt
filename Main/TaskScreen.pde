@@ -71,7 +71,7 @@ class TaskScreen extends Screen
     if (user.dataCount() == 0)
       currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
     else
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4), user.dataCount()), calcType);
+      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4, calcType), user.dataCount()), calcType);
     startTask();
     
   }
@@ -139,7 +139,7 @@ class TaskScreen extends Screen
         taskIndex = 0;
         //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
         //currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1), calcType);
-        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4), user.dataCount()), calcType);
+        currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(4, calcType), user.dataCount()), calcType);
         startTask();
       }
       else
