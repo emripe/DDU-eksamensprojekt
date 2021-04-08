@@ -22,8 +22,6 @@ class TaskScreen extends Screen
   
   TaskScreen()
   {
-    user.taskCounter = int(user.lines[1]);
-    user.taskCounterCorrect = int(user.lines[2]);
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -108,13 +106,10 @@ class TaskScreen extends Screen
     {
       if (!calcInput.getText().equals(""))
       {
-        
         user.taskCounter++;
-        println(user.taskCounter);
         user.lines[1] = str(user.taskCounter);
         if(Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
-          println("yoink");
           user.taskCounterCorrect++;
           user.lines[2] = str(user.taskCounterCorrect);
           
