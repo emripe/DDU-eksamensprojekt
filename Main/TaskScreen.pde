@@ -15,6 +15,9 @@ class TaskScreen extends Screen
   int taskIndex = 0;
   int startTime;
   
+  int starCount = 0;
+  PImage starImg = loadImage("star.png");
+  
   
   int[] times = new int[5];
   
@@ -24,6 +27,7 @@ class TaskScreen extends Screen
   {
     user.taskCounter = int(user.lines[1]);
     user.taskCounterCorrect = int(user.lines[2]);
+    
     c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
@@ -44,7 +48,7 @@ class TaskScreen extends Screen
 
     taskProgress
       .setSize(1000, 30)
-      .setPosition(200, 400)
+      .setPosition(width/5*4, 110)
       .setText("popoo")
       .setColor(color(0))
       .setFont(DefaultFont);
@@ -83,6 +87,11 @@ class TaskScreen extends Screen
     fill(235);
     stroke(235);
     rect(width/5+30, 100, 900, 650, 10);
+    
+    for (int i = 0; i < starCount; i++)
+    {
+      image(starImg, width/5*4 + (i*30), 20);
+    }
   }
   void Close()
   {
@@ -97,7 +106,7 @@ class TaskScreen extends Screen
   void startTask()
   {
     info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
-    taskProgress.setText((taskIndex+1) + "/5");
+    taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
   }
   
@@ -106,49 +115,48 @@ class TaskScreen extends Screen
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
+      // input field is not empty
       if (!calcInput.getText().equals(""))
       {
-        
+        // increment task counter
         user.taskCounter++;
         println(user.taskCounter);
         user.lines[1] = str(user.taskCounter);
+        
+        // check if correct
         if(Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
-          println("yoink");
           user.taskCounterCorrect++;
           user.lines[2] = str(user.taskCounterCorrect);
+          starCount++;
           
         }
+        // save userdata again???
         saveStrings(user.userFile, user.lines);
-        /*
-        println("guess: " + Long.parseLong(calcInput.getText()));
-        println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
        
-        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-        {
-          println("correct");
-        }
-        else
-          println("wrong");
-        */
-        
+        // save time to times list
         times[taskIndex] = millis() - startTime;
-        //println("time: " + times[taskIndex]);
   
+        // after last task
         if (taskIndex == 4)
         {
+          // update user stars
+          starCount = 0;
+          
+          
+          // calculate average
           int avg = 0;
           for (int i = 0; i < 5; i++)
-          {
             avg += times[i];
-          }
           avg /= 5;
           println("avg: " + avg);
-          // save data here. avg & currentTaskSet.params
-          user.saveNewData(avg,currentTaskSet.params, calcType);
+          
+          // save average and params
+          user.saveNewData(avg, currentTaskSet.params, calcType);
           taskIndex = 0;
           //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(currentTaskSet.params, 1), calcType);
+          Parameters p = user.getBestDataPoints(15, calcType);
+          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataCount()), calcType);
           startTask();
         }
         else
