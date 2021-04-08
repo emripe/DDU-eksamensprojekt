@@ -54,6 +54,8 @@ class StatisticsScreen extends Screen
       .setSize(200, 50)
       .setColor(cG)
       .setFont(DefaultFont);
+      
+    AddHiddenButtons();
   }
   void Update()
   {
