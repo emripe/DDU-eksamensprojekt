@@ -2,7 +2,6 @@ class StatisticsDetailedScreen extends Screen
 {
   //Tilbageknap oprettes
   int ButtonCount = 3;
-  Button[] InviButtons = new Button[ButtonCount];
   Button tilbage = cp5.addButton("tilbage");
   
   CColor cG = new CColor();
@@ -10,10 +9,6 @@ class StatisticsDetailedScreen extends Screen
   float[] angles;
   StatisticsDetailedScreen()
   {
-    for (int i = 0; i < ButtonCount; i++)
-    {
-      InviButtons[i] = cp5.addButton("InviButton "+i);
-    }
     cG
       .setActive(color(92, 135, 110))
       .setBackground(color(122, 180, 146))
@@ -33,6 +28,8 @@ class StatisticsDetailedScreen extends Screen
       .setSize(200, 50)
       .setColor(cG)
       .setFont(DefaultFont);
+    
+    AddHiddenButtons();
   }
   void Update()
   {
@@ -43,11 +40,6 @@ class StatisticsDetailedScreen extends Screen
   }
   void Close()
   {
-    for (int i = 0; i < ButtonCount; i++)
-    {
-
-      cp5.remove(InviButtons[i].getName());
-    }
     tilbage.remove();
   }
   void pieChart(float diameter, float[] data) {

@@ -9,8 +9,8 @@ class UserData {
   String[] lines; // kan gemme alt som filen indeholder
   int additionPos, subtractionPos, multiplicationPos, divisionPos; 
   File userFile; 
-  int taskCounter;
-  int taskCounterCorrect;
+  int taskCounter=0;
+  int taskCounterCorrect=0;
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
@@ -129,12 +129,12 @@ class UserData {
   }
   
   
-  int dataCount(){ // sum af alle rengearter
+  int dataSetCount(){ // sum af alle rengearter
     int num = lines.length-additionPos-4;
     return (num);
   }
   
-  int dataCount(CalcType calcType){ // gør så man tæller antal linjer for et bestemt emne
+  int dataSetCount(CalcType calcType){ // gør så man tæller antal linjer for et bestemt emne
     int num=-2000000;
     switch (calcType)
     {
