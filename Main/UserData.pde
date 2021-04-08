@@ -21,6 +21,8 @@ class UserData {
     
     if (existingUser == true){
       lines = loadStrings(userFile);
+      taskCounter = int(lines[1]);
+      taskCounterCorrect = int(lines[2]);
       findPos();
     }
     
@@ -28,6 +30,8 @@ class UserData {
       createWriter(userFile);
       lines = new String[7];
       lines[0]=password;
+      lines[1] = str(taskCounter);
+      lines[2] = str(taskCounterCorrect);
       lines[3]="addition";
       lines[4]="subtraction";
       lines[5]="multiplication";
@@ -129,12 +133,12 @@ class UserData {
   }
   
   
-  int dataCount(){ // sum af alle rengearter
+  int dataSetCount(){ // sum af alle rengearter
     int num = lines.length-additionPos-4;
     return (num);
   }
   
-  int dataCount(CalcType calcType){ // gør så man tæller antal linjer for et bestemt emne
+  int dataSetCount(CalcType calcType){ // gør så man tæller antal linjer for et bestemt emne
     int num=-2000000;
     switch (calcType)
     {

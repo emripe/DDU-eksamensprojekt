@@ -120,7 +120,6 @@ class TaskScreen extends Screen
       {
         // increment task counter
         user.taskCounter++;
-        println(user.taskCounter);
         user.lines[1] = str(user.taskCounter);
         
         // check if correct

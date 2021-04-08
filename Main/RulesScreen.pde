@@ -56,5 +56,20 @@ class RulesScreen extends Screen
       Close();
       currentScreen = new TaskScreen();
     }
+    if (theEvent.getController().getName() == "addition")
+    {
+      Close();
+      currentScreen = new Addition();
+    }
+    if (theEvent.getController().getName() == "subtraktion")
+    {
+      Close();
+      currentScreen = new subtraktion();
+    }
+    if (theEvent.getController().getName() == "multiplikation")
+    {
+      Close();
+      currentScreen = new multiplikation();
+    }
   }
 }
