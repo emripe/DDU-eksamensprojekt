@@ -10,11 +10,14 @@ class Addition extends Screen
   public Addition()
   {
     background(249, 158, 184);
+    noStroke();
+    fill(255, 235, 234);
+    rect(50, 120, width-50*2, height-79);
     lines = loadStrings("data/text/addition.txt");
     
     for(int i = 0; i <lines.length; i++){
       fill(0);
-      text(lines[i], 30, 10*i+100);
+      text(lines[i], 80, 30*i+175);
     }
     img = loadImage("2+2.png");
     
@@ -54,10 +57,20 @@ class subtraktion extends Screen
 {
   Button tilbage = cp5.addButton("tilbage");
   CColor cA = new CColor();
+  String[] lines;
   
   public subtraktion()
   {
     background(249, 158, 184);
+    noStroke();
+    fill(255, 235, 234);
+    rect(50, 120, width-50*2, height-79);
+    lines = loadStrings("data/text/subtraktion.txt");
+    
+    for(int i = 0; i <lines.length; i++){
+      fill(0);
+      text(lines[i], 80, 30*i+175);
+    }
     
     cA
       .setActive(color(255, 153, 176))
