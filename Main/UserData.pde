@@ -28,6 +28,8 @@ class UserData {
       createWriter(userFile);
       lines = new String[7];
       lines[0]=password;
+      //lines[1] er taskcounter
+      //lines[2] er taskcountercorrect
       lines[3]="addition";
       lines[4]="subtraction";
       lines[5]="multiplication";
