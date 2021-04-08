@@ -9,8 +9,8 @@ class UserData {
   String[] lines; // kan gemme alt som filen indeholder
   int additionPos, subtractionPos, multiplicationPos, divisionPos; 
   File userFile; 
-  int taskCounter=0;
-  int taskCounterCorrect=0;
+  int taskCounter;
+  int taskCounterCorrect;
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
@@ -21,6 +21,8 @@ class UserData {
     
     if (existingUser == true){
       lines = loadStrings(userFile);
+      taskCounter = int(lines[1]);
+      taskCounterCorrect = int(lines[2]);
       findPos();
     }
     
@@ -28,6 +30,8 @@ class UserData {
       createWriter(userFile);
       lines = new String[7];
       lines[0]=password;
+      lines[1] = str(taskCounter);
+      lines[2] = str(taskCounterCorrect);
       lines[3]="addition";
       lines[4]="subtraction";
       lines[5]="multiplication";
