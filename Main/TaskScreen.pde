@@ -21,25 +21,25 @@ class TaskScreen extends Screen
   int taskIndex = 0;
   int startTime;
 
-    int starCount = 0;
+  int starCount = 0;
   PImage starImg = loadImage("star.png");
 
-    int buttonCount = 4;
+  int buttonCount = 4;
   Button [] taskTypes = new Button [buttonCount];
 
 
-    int[] times = new int[5];
+  int[] times = new int[5];
 
   CalcType calcType = CalcType.addition;
 
   TaskScreen()
   {
 
-      user.taskCounter = int(user.lines[1]);
+    user.taskCounter = int(user.lines[1]);
     user.taskCounterCorrect = int(user.lines[2]);
 
 
-      for (int i = 0; i < buttonCount; i++)
+    for (int i = 0; i < buttonCount; i++)
     {
       taskTypes[i] = cp5.addButton("Button "+i);
       taskTypes[i]
@@ -48,7 +48,7 @@ class TaskScreen extends Screen
     }
 
 
-      c
+    c
       .setActive(color(228, 232, 235))
       .setBackground(color(195, 205, 212))
       .setForeground(color(223, 231, 237));
@@ -190,81 +190,79 @@ class TaskScreen extends Screen
         user.lines[1] = str(user.taskCounter);
 
 
-          // check if correct
-          if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+        // check if correct
+        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
           user.taskCounterCorrect++;
           user.lines[2] = str(user.taskCounterCorrect);
           starCount++;
+        }
+
+        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+        {
+          user.taskCounterCorrect++;
+          user.lines[2] = str(user.taskCounterCorrect);
+        }
+        // save userdata again???
+        saveStrings(user.userFile, user.lines);
 
 
-            if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-          {
-            user.taskCounterCorrect++;
-            user.lines[2] = str(user.taskCounterCorrect);
+        // save time to times list
+        times[taskIndex] = millis() - startTime;
 
-          }
-          // save userdata again???
-          saveStrings(user.userFile, user.lines);
+        // after last task
 
-
-            // save time to times list
-            times[taskIndex] = millis() - startTime;
-
-          // after last task
-
-          /*
+        /*
         println("guess: " + Long.parseLong(calcInput.getText()));
-           println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
-           
-           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-           {
-           println("correct");
-           }
-           else
-           println("wrong");
-           */
+         println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
+         
+         if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
+         {
+         println("correct");
+         }
+         else
+         println("wrong");
+         */
 
-            times[taskIndex] = millis() - startTime;
-          //println("time: " + times[taskIndex]);
-
-
-            if (taskIndex == 4)
-          {
-            // update user stars
-            starCount = 0;
+        times[taskIndex] = millis() - startTime;
+        //println("time: " + times[taskIndex]);
 
 
-            // calculate average
-            int avg = 0;
-            for (int i = 0; i < 5; i++)
-              avg += times[i];
-            avg /= 5;
-            println("avg: " + avg);
+        if (taskIndex == 4)
+        {
+          // update user stars
+          starCount = 0;
 
 
-              // save average and params
+          // calculate average
+          int avg = 0;
+          for (int i = 0; i < 5; i++)
+            avg += times[i];
+          avg /= 5;
+          println("avg: " + avg);
 
-              // save data here. avg & currentTaskSet.params
 
-              user.saveNewData(avg, currentTaskSet.params, calcType);
-            taskIndex = 0;
-            //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-            Parameters p = user.getBestDataPoints(15, calcType);
-            currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-            startTask();
-          } else
-          {
-            taskIndex++;
-            startTask();
-          }
+          // save average and params
+
+          // save data here. avg & currentTaskSet.params
+
+          user.saveNewData(avg, currentTaskSet.params, calcType);
+          taskIndex = 0;
+          //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+          Parameters p = user.getBestDataPoints(15, calcType);
+          currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
+          startTask();
+        } else
+        {
+          taskIndex++;
+          startTask();
         }
       }
-      if (theEvent.getController().getName() == "tilbage")
-      {
-        Close();
-        currentScreen = new MainScreen();
-      }
+    }
+    if (theEvent.getController().getName() == "tilbage")
+    {
+      Close();
+      currentScreen = new MainScreen();
     }
   }
 }
