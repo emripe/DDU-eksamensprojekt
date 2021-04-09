@@ -94,30 +94,33 @@ class UserData {
     
     int bestNum=0;            // nummer på bedste værdi 
     float bestVal=2000000000; // bedste værdis afstand fra den optimale tid
-    int len=50;               // antal opgaver der skal gennemgås
-    
+    int startVal = 0;
+    int endVal = 0;
     switch (calcType)
     {
       case addition:
-        
+        startVal = additionPos+1;
+        endVal = subtractionPos;
         break;
       case subtraction:
-        
+        startVal = subtractionPos+1;
+        endVal = multiplicationPos;
         break;
       case multiplication:
-        
+        startVal = multiplicationPos+1;
+        endVal = divisionPos;
         break;
       case division:
-        
+        startVal = divisionPos+1;
+        endVal = lines.length;
         break;
-      
     }
     
-    if (lines.length<50){
-      len=lines.length;
+    if (endVal-startVal>50){
+      endVal=startVal+50;
     }
     
-    for (int i=0; i<len; i++){
+    for (int i=startVal; i<endVal; i++){
       float[] taskInfo = float(split(lines[i],";"));
       float currentVal=abs(taskInfo[0]-optimalTime); // den nuværende tids afstand fra den optimale tid
       
