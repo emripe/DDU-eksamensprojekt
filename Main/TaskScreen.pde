@@ -8,6 +8,8 @@ class TaskScreen extends Screen
   Textarea info = cp5.addTextarea("info");
   Textarea taskProgress = cp5.addTextarea("taskProgress");
   Textarea title = cp5.addTextarea("title");
+  Textarea username = cp5.addTextarea("username");
+  Textarea userStarCount = cp5.addTextarea("userStarCount");
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();

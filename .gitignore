@@ -1,2 +1,2 @@
-*.txt
+main/data/data/*.txt
 *.autosave
