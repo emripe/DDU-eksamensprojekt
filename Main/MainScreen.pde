@@ -66,7 +66,7 @@ class MainScreen extends Screen
     if (theEvent.getController().getName() == "opgaver")
     {
       Close();
-      currentScreen = new TaskScreen();
+      currentScreen = new TaskScreen(CalcType.addition);
     }
     if (theEvent.getController().getName() == "resultater")
     {

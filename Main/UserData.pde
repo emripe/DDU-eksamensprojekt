@@ -11,6 +11,7 @@ class UserData {
   File userFile; 
   int taskCounter;
   int taskCounterCorrect;
+  CalcType calcType = CalcType.addition;
   
   UserData (boolean existingUser, String userName, String password) {
     this.userName = userName;
@@ -91,7 +92,7 @@ class UserData {
   
   
   Parameters getBestDataPoints(int optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
-    
+    this.calcType = calcType;
     int bestNum=0;            // nummer på bedste værdi 
     float bestVal=2000000000; // bedste værdis afstand fra den optimale tid
     int startVal = 0;
