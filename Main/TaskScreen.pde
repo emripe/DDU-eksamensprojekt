@@ -140,13 +140,13 @@ class TaskScreen extends Screen
       .setFont(DefaultFont);
 
     username
-      .setPosition(width/2, 30)
+      .setPosition(width/2+20, 35)
       .setFont(DefaultFont)
       .setText(user.userName)
       .setColorValue(color(0));
       
     userStarCount
-      .setPosition(width/3*2, 30)
+      .setPosition(width/3*2+30, 35)
       .setFont(DefaultFont)
       .setText("3")
       .setColorValue(color(0));
@@ -179,6 +179,8 @@ class TaskScreen extends Screen
     calcInput.remove();
     answerButton.remove();
     tilbage.remove();
+    username.remove();
+    userStarCount.remove();
     for (int i = 0; i < buttonCount; i++)
     {
       taskTypes[i].remove();
