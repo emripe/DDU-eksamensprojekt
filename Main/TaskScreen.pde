@@ -100,7 +100,7 @@ class TaskScreen extends Screen
     }
     title
       .setPosition(width/5+40, 20)
-      .setText("")
+      .setText("addition")
       .setColor(color(0))
       .setFont(DefaultFont);
 
@@ -139,6 +139,18 @@ class TaskScreen extends Screen
       .setColor(cB)
       .setFont(DefaultFont);
 
+    username
+      .setPosition(width/2, 30)
+      .setFont(DefaultFont)
+      .setText(user.userName)
+      .setColorValue(color(0));
+      
+    userStarCount
+      .setPosition(width/3*2, 30)
+      .setFont(DefaultFont)
+      .setText("3")
+      .setColorValue(color(0));
+
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
     startTask();
   }
@@ -151,7 +163,9 @@ class TaskScreen extends Screen
     fill(235);
     stroke(235);
     rect(width/5+30, 100, 900, 650, 10);
-
+    
+    rect(width/2, 5, width/4, 90, 10);
+    
     for (int i = 0; i < starCount; i++)
     {
       image(starImg, width/5*4 + (i*30), 20);

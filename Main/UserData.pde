@@ -87,7 +87,7 @@ class UserData {
     saveStrings(userFile,lines);
     findPos();
     
-    }
+  }
   
   
   Parameters getBestDataPoints(int optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
