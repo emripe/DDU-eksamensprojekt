@@ -8,6 +8,8 @@ class MainScreen extends Screen
   CColor cG = new CColor();
   int s = 250;
   PImage lommeregner = loadImage("lommeregner.png");
+  PImage bog = loadImage("bog.png");
+  PImage statistik = loadImage("Statistik.png");
 
   MainScreen()
   {
@@ -17,35 +19,34 @@ class MainScreen extends Screen
       .setActive(color(173, 231, 197))
       .setBackground(color(153, 225, 183))
       .setForeground(color(163, 228, 190));
-
+      
     cR
       .setActive(color(250, 177, 198))
       .setBackground(color(249, 158, 184))
       .setForeground(color(250, 168, 191));
-
+      
     cB
       .setActive(color(174, 207, 229))
       .setBackground(color(154, 195, 223))
       .setForeground(color(164, 201, 226));
 
     regneregler
-      .setPosition(100, s)
-      .setSize(s, s)
+      .setPosition(133, s)
+      .setSize(217, s)
       .setColor(cR)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setImage(bog);
 
     resultater
       .setPosition(300+175, s)
       .setSize(s, s)
       .setColor(cG)
-      .setFont(DefaultFont);
-      
-    
-    //image(lommeregner, 0, 0, 120, 80);
+      .setFont(DefaultFont)
+      .setImage(statistik);
     
     opgaver
       .setPosition(width-100-s, s)
-      .setSize(s, s)
+      .setSize(185, s)
       .setColor(cB)
       .setFont(DefaultFont)
       .setImage(lommeregner);
