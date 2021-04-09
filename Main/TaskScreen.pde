@@ -195,6 +195,23 @@ class TaskScreen extends Screen
   void HandleEvent(ControlEvent theEvent)
   {
     println("event " + theEvent.getController().getName());
+    
+    switch (theEvent.getController().getName())
+    {
+      case  "Button 0":
+        calcType = CalcType.addition;
+        break;
+      case  "Button 1":
+        calcType = CalcType.subtraction;
+        break;
+      case  "Button 2":
+        calcType = CalcType.multiplication;
+        break;
+      case  "Button 3":
+        calcType = CalcType.division;
+        break;
+    }
+    
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
