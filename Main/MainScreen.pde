@@ -7,6 +7,7 @@ class MainScreen extends Screen
   CColor cB = new CColor();
   CColor cG = new CColor();
   int s = 250;
+  PImage lommeregner = loadImage("lommeregner.png");
 
   MainScreen()
   {
@@ -38,12 +39,16 @@ class MainScreen extends Screen
       .setSize(s, s)
       .setColor(cG)
       .setFont(DefaultFont);
-
+      
+    
+    //image(lommeregner, 0, 0, 120, 80);
+    
     opgaver
       .setPosition(width-100-s, s)
       .setSize(s, s)
       .setColor(cB)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setImage(lommeregner);
   }
   void Close()
   {
