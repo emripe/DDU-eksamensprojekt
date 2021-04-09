@@ -34,9 +34,10 @@ class TaskScreen extends Screen
 
   CalcType calcType = CalcType.addition;
 
-  TaskScreen()
+  TaskScreen(CalcType calcType)
   {
-
+    this.calcType = calcType;
+    
     user.taskCounter = int(user.lines[1]);
     user.taskCounterCorrect = int(user.lines[2]);
 
@@ -189,7 +190,21 @@ class TaskScreen extends Screen
 
   void startTask()
   {
-    info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+    switch (calcType)
+    {
+    case addition:
+      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      break;
+    case subtraction:
+      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " - " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      break;
+    case multiplication:
+      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " * " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      break;
+    case division:
+      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " / " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      break;
+    }
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
   }
@@ -201,16 +216,22 @@ class TaskScreen extends Screen
     switch (theEvent.getController().getName())
     {
       case  "Button 0":
-        calcType = CalcType.addition;
+        currentScreen = new TaskScreen(CalcType.addition);
+        user.calcType = calcType;
         break;
       case  "Button 1":
-        calcType = CalcType.subtraction;
+        currentScreen = new TaskScreen(CalcType.subtraction);
+        user.calcType = calcType;
         break;
       case  "Button 2":
         calcType = CalcType.multiplication;
+        currentScreen = new TaskScreen(CalcType.multiplication);
+        user.calcType = calcType;
         break;
       case  "Button 3":
         calcType = CalcType.division;
+        currentScreen = new TaskScreen(CalcType.division);
+        user.calcType = calcType;
         break;
     }
     
