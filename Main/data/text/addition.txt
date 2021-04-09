@@ -1,0 +1,2 @@
+Addition
+Addition er at lægge tal sammen. Når man lægger tal sammen, går man en hvis antal tal hen fra et andet. 
