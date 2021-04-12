@@ -26,6 +26,7 @@ class TaskScreen extends Screen
   // stars
   int starCount = 3;
   PImage starImg = loadImage("star.png");
+  PImage TavleImg = loadImage("TavleEtEllerAndet.png");
   int starAnimationTime = -1;
   int starAnimationDuration = 60;
 
