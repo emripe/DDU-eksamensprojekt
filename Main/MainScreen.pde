@@ -54,12 +54,12 @@ class MainScreen extends Screen
       .setFont(DefaultFont)
       .setImage(tavle);
     
-      fill(117,33,24);
+      fill(187,96,86);
       textFont(Font);
     text("Regneregler", 168,s+s+50);
-      fill(32,62,109);
+      fill(94,134,197);
     text("Statistik", 535,s+s+50);
-      fill(82,49,5);
+      fill(56,81,90);
     text("Opgaver", width-300,s+s+50);
   }
   void Close()
