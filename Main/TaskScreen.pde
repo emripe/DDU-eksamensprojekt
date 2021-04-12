@@ -27,10 +27,12 @@ class TaskScreen extends Screen
   int starCount = 3;
   PImage starImg = loadImage("star.png");
   int starAnimationTime = -1;
-  int starAnimationDuration = 100;
+  int starAnimationDuration = 60;
 
   int buttonCount = 4;
   Button [] taskTypes = new Button [buttonCount];
+  
+  boolean showAnswer = false;
 
 
   int[] times = new int[5];
@@ -179,18 +181,19 @@ class TaskScreen extends Screen
     {
       for (int i = 0; i < starCount; i++)
       {
-        if (starAnimationTime == 120)
-        {
-          starAnimationTime = -1;
-        }
         int localTime = max(0, starAnimationTime - 20*i);;
         
-        float x = lerp(width/5*4 + (i*30), userStarCount.getPosition()[0], float(localTime)/float(starAnimationDuration-(20*i)));
-        x = constrain(x, userStarCount.getPosition()[0], width/5*4 + (i*30));
-        image(starImg, x, 20);
+        if (localTime >= starAnimationDuration)
+          continue;
         
-        starAnimationTime++;
+        
+        float x = lerp(width/5*4 + (i*30), userStarCount.getPosition()[0], float(localTime)/float(starAnimationDuration));
+        x = constrain(x, userStarCount.getPosition()[0], width/5*4 + (i*30));
+        float y = 20 + sin(radians(float(localTime)/float(starAnimationDuration)*180))*30;
+        image(starImg, x, y);
+        
       }
+      starAnimationTime++;
     }
     else
     {
@@ -270,6 +273,10 @@ class TaskScreen extends Screen
       // input field is not empty
       if (!calcInput.getText().equals(""))
       {
+        showAnswer = !showAnswer;
+        if (!showAnswer)
+        {
+        }
         // increment task counter
         user.taskCounter++;
         user.lines[1] = str(user.taskCounter);
@@ -294,21 +301,6 @@ class TaskScreen extends Screen
 
         // save time to times list
         times[taskIndex] = millis() - startTime;
-
-        // after last task
-
-        /*
-        println("guess: " + Long.parseLong(calcInput.getText()));
-         println("answer: " + currentTaskSet.tasks[taskIndex].getAnswer());
-         
-         if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-         {
-         println("correct");
-         }
-         else
-         println("wrong");
-         */
-
         times[taskIndex] = millis() - startTime;
         //println("time: " + times[taskIndex]);
 
