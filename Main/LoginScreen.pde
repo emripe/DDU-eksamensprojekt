@@ -57,6 +57,7 @@ class LoginScreen extends Screen
     
     if (theEvent.getController().getName() == "Login")
     {
+      button.play();
       File file = dataFile("data/" + nameInput +".txt");
       boolean existingUser;
 

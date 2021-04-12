@@ -59,6 +59,7 @@ class MainScreen extends Screen
   }
   void HandleEvent(ControlEvent theEvent)
   {
+    button.play();
     if (theEvent.getController().getName() == "regneregler")
     {
       Close();
