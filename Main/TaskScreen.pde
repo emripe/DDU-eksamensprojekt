@@ -243,6 +243,7 @@ class TaskScreen extends Screen
 
   void HandleEvent(ControlEvent theEvent)
   {
+    button.play();
     println("event " + theEvent.getController().getName());
     
     switch (theEvent.getController().getName())

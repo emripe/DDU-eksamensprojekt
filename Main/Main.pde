@@ -1,5 +1,8 @@
 import controlP5.*;
 ControlP5 cp5;
+import processing.sound.*;
+SoundFile button;
+SoundFile Star;
 PFont DefaultFont;
 Screen currentScreen;
 MachineLearning ml = new MachineLearning();
@@ -18,6 +21,7 @@ void setup() {
   DefaultFont = createFont("Arial", 22);
   size(1200, 800);
   currentScreen = new LoginScreen();
+  button = new SoundFile(this, "data/Mouse Click - Sound Effect (HD).mp3");
 }
 
 void draw() {

@@ -57,6 +57,7 @@ class StatisticsDetailedScreen extends Screen
   }
   void HandleEvent(ControlEvent theEvent)
   {
+    button.play();
     switch(theEvent.getController().getName())
     {
     case "tilbage":
