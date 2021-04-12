@@ -8,12 +8,15 @@ class MainScreen extends Screen
   CColor cG = new CColor();
   int s = 250;
   PImage lommeregner = loadImage("lommeregner.png");
+  PImage tavle = loadImage("tavle.png");
   PImage bog = loadImage("bog.png");
   PImage statistik = loadImage("Statistik.png");
+  PFont Font;
 
   MainScreen()
   {
     background(221, 239, 255);
+    Font = createFont("Comic Sans MS",28);
 
     cG
       .setActive(color(173, 231, 197))
@@ -45,11 +48,19 @@ class MainScreen extends Screen
       .setImage(statistik);
     
     opgaver
-      .setPosition(width-100-s, s)
-      .setSize(185, s)
+      .setPosition(width-150-s, s+25)
+      .setSize(308, 200)
       .setColor(cB)
       .setFont(DefaultFont)
-      .setImage(lommeregner);
+      .setImage(tavle);
+    
+      fill(117,33,24);
+      textFont(Font);
+    text("Regneregler", 168,s+s+50);
+      fill(32,62,109);
+    text("Statistik", 535,s+s+50);
+      fill(82,49,5);
+    text("Opgaver", width-300,s+s+50);
   }
   void Close()
   {
