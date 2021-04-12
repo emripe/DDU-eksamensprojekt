@@ -23,8 +23,11 @@ class TaskScreen extends Screen
   int taskIndex = 0;
   int startTime;
 
-  int starCount = 0;
+  // stars
+  int starCount = 3;
   PImage starImg = loadImage("star.png");
+  int starAnimationTime = -1;
+  int starAnimationDuration = 100;
 
   int buttonCount = 4;
   Button [] taskTypes = new Button [buttonCount];
@@ -152,7 +155,7 @@ class TaskScreen extends Screen
       .setText("3")
       .setColorValue(color(0));
 
-    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(15, calcType), user.dataSetCount()), calcType);
     startTask();
   }
   void Update()
@@ -167,10 +170,36 @@ class TaskScreen extends Screen
     
     rect(width/2, 5, width/4, 90, 10);
     
-    for (int i = 0; i < starCount; i++)
+    
+    if (starCount == 4 && starAnimationTime == -1)
     {
-      image(starImg, width/5*4 + (i*30), 20);
+      starAnimationTime = 0;
     }
+    if (starAnimationTime >= 0)
+    {
+      for (int i = 0; i < starCount; i++)
+      {
+        if (starAnimationTime == 120)
+        {
+          starAnimationTime = -1;
+        }
+        int localTime = max(0, starAnimationTime - 20*i);;
+        
+        float x = lerp(width/5*4 + (i*30), userStarCount.getPosition()[0], float(localTime)/float(starAnimationDuration-(20*i)));
+        x = constrain(x, userStarCount.getPosition()[0], width/5*4 + (i*30));
+        image(starImg, x, 20);
+        
+        starAnimationTime++;
+      }
+    }
+    else
+    {
+      for (int i = 0; i < starCount; i++)
+      {
+        image(starImg, width/5*4 + (i*30), 20);
+      }
+    }
+    
   }
   void Close()
   {
