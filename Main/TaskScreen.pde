@@ -31,7 +31,7 @@ class TaskScreen extends Screen
 
   int buttonCount = 4;
   Button [] taskTypes = new Button [buttonCount];
-  
+
   boolean showAnswer = false;
 
 
@@ -42,9 +42,9 @@ class TaskScreen extends Screen
   TaskScreen(CalcType calcType)
   {
     this.calcType = calcType;
-    
-    user.taskCounter = int(user.lines[1]);
-    user.taskCounterCorrect = int(user.lines[2]);
+
+    user.tasksCounter[0] = int(user.lines[1]);
+    user.tasksCounterCorrect[0] = int(user.lines[2]);
 
 
     for (int i = 0; i < buttonCount; i++)
@@ -150,7 +150,7 @@ class TaskScreen extends Screen
       .setFont(DefaultFont)
       .setText(user.userName)
       .setColorValue(color(0));
-      
+
     userStarCount
       .setPosition(width/3*2+30, 35)
       .setFont(DefaultFont)
@@ -169,10 +169,10 @@ class TaskScreen extends Screen
     fill(235);
     stroke(235);
     rect(width/5+30, 100, 900, 650, 10);
-    
+
     rect(width/2, 5, width/4, 90, 10);
-    
-    
+
+
     if (starCount == 4 && starAnimationTime == -1)
     {
       starAnimationTime = 0;
@@ -181,28 +181,26 @@ class TaskScreen extends Screen
     {
       for (int i = 0; i < starCount; i++)
       {
-        int localTime = max(0, starAnimationTime - 20*i);;
-        
+        int localTime = max(0, starAnimationTime - 20*i);
+        ;
+
         if (localTime >= starAnimationDuration)
           continue;
-        
-        
+
+
         float x = lerp(width/5*4 + (i*30), userStarCount.getPosition()[0], float(localTime)/float(starAnimationDuration));
         x = constrain(x, userStarCount.getPosition()[0], width/5*4 + (i*30));
         float y = 20 + sin(radians(float(localTime)/float(starAnimationDuration)*180))*30;
         image(starImg, x, y);
-        
       }
       starAnimationTime++;
-    }
-    else
+    } else
     {
       for (int i = 0; i < starCount; i++)
       {
         image(starImg, width/5*4 + (i*30), 20);
       }
     }
-    
   }
   void Close()
   {
@@ -245,29 +243,29 @@ class TaskScreen extends Screen
   {
     button.play();
     println("event " + theEvent.getController().getName());
-    
+
     switch (theEvent.getController().getName())
     {
-      case  "Button 0":
-        currentScreen = new TaskScreen(CalcType.addition);
-        user.calcType = calcType;
-        break;
-      case  "Button 1":
-        currentScreen = new TaskScreen(CalcType.subtraction);
-        user.calcType = calcType;
-        break;
-      case  "Button 2":
-        calcType = CalcType.multiplication;
-        currentScreen = new TaskScreen(CalcType.multiplication);
-        user.calcType = calcType;
-        break;
-      case  "Button 3":
-        calcType = CalcType.division;
-        currentScreen = new TaskScreen(CalcType.division);
-        user.calcType = calcType;
-        break;
+    case  "Button 0":
+      currentScreen = new TaskScreen(CalcType.addition);
+      user.calcType = calcType;
+      break;
+    case  "Button 1":
+      currentScreen = new TaskScreen(CalcType.subtraction);
+      user.calcType = calcType;
+      break;
+    case  "Button 2":
+      calcType = CalcType.multiplication;
+      currentScreen = new TaskScreen(CalcType.multiplication);
+      user.calcType = calcType;
+      break;
+    case  "Button 3":
+      calcType = CalcType.division;
+      currentScreen = new TaskScreen(CalcType.division);
+      user.calcType = calcType;
+      break;
     }
-    
+
     // answer button pressed
     if (theEvent.getController().getName() == "svar" || theEvent.getController().getName() == "calcInput")
     {
@@ -279,22 +277,46 @@ class TaskScreen extends Screen
         {
         }
         // increment task counter
-        user.taskCounter++;
-        user.lines[1] = str(user.taskCounter);
+        user.tasksCounter[0]++;
+        user.lines[1] = str(user.tasksCounter[0]);
+        switch(calcType)
+        {
+        case addition:
+          user.tasksCounter[1]++;
+          break;
+        case subtraction:
+          user.tasksCounter[2]++;
+          break;
+        case multiplication:
+          user.tasksCounter[3]++;
+          break;
+        case division:
+          user.tasksCounter[4]++;
+          break;
+        }
 
 
         // check if correct
         if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
         {
-          user.taskCounterCorrect++;
-          user.lines[2] = str(user.taskCounterCorrect);
+          user.tasksCounterCorrect[0]++;
+          user.lines[2] = str(user.tasksCounterCorrect[0]);
           starCount++;
-        }
-
-        if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
-        {
-          user.taskCounterCorrect++;
-          user.lines[2] = str(user.taskCounterCorrect);
+          switch(calcType)
+          {
+          case addition:
+            user.tasksCounterCorrect[1]++;
+            break;
+          case subtraction:
+            user.tasksCounterCorrect[2]++;
+            break;
+          case multiplication:
+            user.tasksCounterCorrect[3]++;
+            break;
+          case division:
+            user.tasksCounterCorrect[4]++;
+            break;
+          }
         }
         // save userdata again???
         saveStrings(user.userFile, user.lines);
