@@ -180,8 +180,9 @@ class TaskScreen extends Screen
       for (int i = 0; i < starCount; i++)
       {
         int localTime = max(0, starAnimationTime - 20*i);
-        ;
-
+        
+        if (localTime == starAnimationDuration)
+          Star.play();
         if (localTime >= starAnimationDuration)
           continue;
 
@@ -200,6 +201,7 @@ class TaskScreen extends Screen
       }
     }
   }
+  
   void Close()
   {
     title.remove();
@@ -235,6 +237,8 @@ class TaskScreen extends Screen
     }
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
+    
+    calcInput.setFocus(true);
   }
 
   void HandleEvent(ControlEvent theEvent)
@@ -344,6 +348,8 @@ class TaskScreen extends Screen
   
             user.saveNewData(avg, currentTaskSet.params, calcType);
             //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+            
+            // update stars
           }
         }
         else if (!showAnswer)
@@ -359,6 +365,8 @@ class TaskScreen extends Screen
             
           startTask();
         }
+        
+        calcInput.clear();
       }
     }
     if (theEvent.getController().getName() == "tilbage")
