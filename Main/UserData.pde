@@ -11,6 +11,7 @@ class UserData {
   File userFile; 
   int [] tasksCounter = new int [5];
   int [] tasksCounterCorrect = new int [5];
+  int starCount;
   CalcType calcType = CalcType.addition;
 
   UserData (boolean existingUser, String userName, String password) {
@@ -32,12 +33,13 @@ class UserData {
       tasksCounterCorrect[3] = int(lines[8]);
       tasksCounter[4] = int(lines[9]);
       tasksCounterCorrect[4] = int(lines[10]);
+      starCount = int(lines[11]);
       findPos();
     }
 
     if (existingUser == false) { //opret bruger
       createWriter(userFile);
-      lines = new String[15];
+      lines = new String[16];
       lines[0]=password;
       lines[1] = str(tasksCounter[0]);
       lines[2] = str(tasksCounterCorrect[0]);
@@ -49,10 +51,11 @@ class UserData {
       lines[8] = str(tasksCounterCorrect[3]);
       lines[9] = str(tasksCounter[4]);
       lines[10] = str(tasksCounterCorrect[4]);
-      lines[11]="addition";
-      lines[12]="subtraction";
-      lines[13]="multiplication";
-      lines[14]="division";
+      lines[11] = str(starCount);
+      lines[12]="addition";
+      lines[13]="subtraction";
+      lines[14]="multiplication";
+      lines[15]="division";
       additionPos=1;
       subtractionPos=2;
       multiplicationPos=3;
