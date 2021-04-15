@@ -178,12 +178,22 @@ class TaskScreen extends Screen
 
     if (starAnimationTime >= 0)
     {
+      starAnimationTime++;
       for (int i = 0; i < starCount; i++)
       {
         int localTime = max(0, starAnimationTime - 20*i);
 
         if (localTime == starAnimationDuration)
+        {
           Star.play();
+          userStarCount.setText(str(int(userStarCount.getText())+1));
+          if (i == starCount-1)
+          {
+            starAnimationTime = -1;
+            starCount = 0;
+          }
+        }
+          
         if (localTime >= starAnimationDuration)
           continue;
 
@@ -193,7 +203,6 @@ class TaskScreen extends Screen
         float y = 20 + sin(radians(float(localTime)/float(starAnimationDuration)*180))*30;
         image(starImg, x, y);
       }
-      starAnimationTime++;
     } else
     {
       for (int i = 0; i < starCount; i++)
@@ -357,15 +366,21 @@ class TaskScreen extends Screen
 
             // update stars
           }
-        } else if (!showAnswer)
+        }
+        else if (!showAnswer)
         {
           if (taskIndex == 4)
           {
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-          } else
-            taskIndex++;
+          }
+          else
+          {
+            user.starCount += starCount;
+            user.saveStars();
+          }
+          taskIndex++;
 
           startTask();
         }
