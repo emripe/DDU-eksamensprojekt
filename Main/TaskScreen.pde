@@ -200,6 +200,7 @@ class TaskScreen extends Screen
         image(starImg, width/5*4 + (i*30), 20);
       }
     }
+    calcInput.setFocus(true);
   }
   
   void Close()
@@ -238,7 +239,7 @@ class TaskScreen extends Screen
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
     
-    calcInput.setFocus(true);
+    calcInput.clear();
   }
 
   void HandleEvent(ControlEvent theEvent)
@@ -366,7 +367,6 @@ class TaskScreen extends Screen
           startTask();
         }
         
-        calcInput.clear();
       }
     }
     if (theEvent.getController().getName() == "tilbage")
