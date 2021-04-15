@@ -60,7 +60,31 @@ class UserData {
       subtractionPos=2;
       multiplicationPos=3;
       divisionPos=4;
+      for (int i = 0; i < 4; i++)
+      {
+        switch(i)
+        {
+        case 0:
+          saveNewData(0, new Parameters(0, 0), CalcType.addition);
 
+          break;
+
+        case 1:
+          saveNewData(0, new Parameters(0, 0), CalcType.subtraction);
+
+          break;
+
+        case 2:
+          saveNewData(0, new Parameters(0, 0), CalcType.multiplication);
+
+          break;
+
+        case 3:
+          saveNewData(0, new Parameters(0, 0), CalcType.division);
+
+          break;
+        }
+      }
 
       saveStrings(userFile, lines); // 1. linje i filen bliver ens password og de næste 4 bliver de fire regnekategorier
       existingUser=true;
@@ -83,7 +107,10 @@ class UserData {
     }
   }
 
-
+  void saveStars() {
+    lines[11] = str(starCount);
+    saveStrings(userFile, lines);
+  }
   void saveNewData(float time, Parameters parameter, CalcType calcType) { // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
     String newLine = time/1000+";"+parameter.digits+";"+parameter.carryRatio;
 

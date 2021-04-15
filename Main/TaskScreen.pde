@@ -155,7 +155,7 @@ class TaskScreen extends Screen
     userStarCount
       .setPosition(width/3*2+30, 35)
       .setFont(DefaultFont)
-      .setText("3")
+      .setText(str(user.starCount))
       .setColorValue(color(0));
     if (user.dataSetCount() > 0)
       currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(15, calcType), user.dataSetCount()), calcType);
@@ -180,8 +180,9 @@ class TaskScreen extends Screen
       for (int i = 0; i < starCount; i++)
       {
         int localTime = max(0, starAnimationTime - 20*i);
-        ;
-
+        
+        if (localTime == starAnimationDuration)
+          Star.play();
         if (localTime >= starAnimationDuration)
           continue;
 
@@ -199,7 +200,9 @@ class TaskScreen extends Screen
         image(starImg, width/5*4 + (i*30), 20);
       }
     }
+    calcInput.setFocus(true);
   }
+  
   void Close()
   {
     title.remove();
@@ -235,6 +238,8 @@ class TaskScreen extends Screen
     }
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
+    
+    calcInput.clear();
   }
 
   void HandleEvent(ControlEvent theEvent)
@@ -344,6 +349,8 @@ class TaskScreen extends Screen
   
             user.saveNewData(avg, currentTaskSet.params, calcType);
             //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
+            
+            // update stars
           }
         }
         else if (!showAnswer)
@@ -359,6 +366,7 @@ class TaskScreen extends Screen
             
           startTask();
         }
+        
       }
     }
     if (theEvent.getController().getName() == "tilbage")
