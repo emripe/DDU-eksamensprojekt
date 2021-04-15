@@ -374,13 +374,14 @@ class TaskScreen extends Screen
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-          }
-          else
-          {
             user.starCount += starCount;
             user.saveStars();
           }
-          taskIndex++;
+          else
+          {
+            taskIndex++;
+            
+          }
 
           startTask();
         }
