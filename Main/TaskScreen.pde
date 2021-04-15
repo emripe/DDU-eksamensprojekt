@@ -168,19 +168,20 @@ class TaskScreen extends Screen
     background(154, 195, 223);
     fill(123, 156, 178);
     stroke(123, 156, 178);
+    image(TavleImg, width/5+30, 100);
     //rect(width/5, 0, 20, height);
     fill(235);
     stroke(235);
-    rect(width/5+30, 100, 900, 650, 10);
+    //rect(width/5+30, 100, 900, 650, 10);
 
     rect(width/2, 5, width/4, 90, 10);
-    
+
     if (starAnimationTime >= 0)
     {
       for (int i = 0; i < starCount; i++)
       {
         int localTime = max(0, starAnimationTime - 20*i);
-        
+
         if (localTime == starAnimationDuration)
           Star.play();
         if (localTime >= starAnimationDuration)
@@ -202,7 +203,7 @@ class TaskScreen extends Screen
     }
     calcInput.setFocus(true);
   }
-  
+
   void Close()
   {
     title.remove();
@@ -238,7 +239,7 @@ class TaskScreen extends Screen
     }
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
-    
+
     calcInput.clear();
   }
 
@@ -249,24 +250,24 @@ class TaskScreen extends Screen
 
     switch (theEvent.getController().getName())
     {
-      case  "Button 0":
-        currentScreen = new TaskScreen(CalcType.addition);
-        user.calcType = calcType;
-        break;
-      case  "Button 1":
-        currentScreen = new TaskScreen(CalcType.subtraction);
-        user.calcType = calcType;
-        break;
-      case  "Button 2":
-        calcType = CalcType.multiplication;
-        currentScreen = new TaskScreen(CalcType.multiplication);
-        user.calcType = calcType;
-        break;
-      case  "Button 3":
-        calcType = CalcType.division;
-        currentScreen = new TaskScreen(CalcType.division);
-        user.calcType = calcType;
-        break;
+    case  "Button 0":
+      currentScreen = new TaskScreen(CalcType.addition);
+      user.calcType = calcType;
+      break;
+    case  "Button 1":
+      currentScreen = new TaskScreen(CalcType.subtraction);
+      user.calcType = calcType;
+      break;
+    case  "Button 2":
+      calcType = CalcType.multiplication;
+      currentScreen = new TaskScreen(CalcType.multiplication);
+      user.calcType = calcType;
+      break;
+    case  "Button 3":
+      calcType = CalcType.division;
+      currentScreen = new TaskScreen(CalcType.division);
+      user.calcType = calcType;
+      break;
     }
 
     // answer button pressed
@@ -296,77 +297,78 @@ class TaskScreen extends Screen
             user.tasksCounter[4]++;
             break;
           }
-  
-  
+
+
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
           {
-            user.tasksCounterCorrect[0]++;
-            user.lines[2] = str(user.tasksCounterCorrect[0]);
             starCount++;
             switch(calcType)
             {
             case addition:
               user.tasksCounterCorrect[1]++;
+              user.lines[4] = str(user.tasksCounterCorrect[1]);
               break;
             case subtraction:
               user.tasksCounterCorrect[2]++;
+              user.lines[6] = str(user.tasksCounterCorrect[2]);
               break;
             case multiplication:
               user.tasksCounterCorrect[3]++;
+              user.lines[8] = str(user.tasksCounterCorrect[3]);
               break;
             case division:
               user.tasksCounterCorrect[4]++;
+              user.lines[10] = str(user.tasksCounterCorrect[4]);
               break;
             }
+            user.tasksCounterCorrect[0]++;
+            user.lines[2] = str(user.tasksCounterCorrect[0]);
           }
           // save userdata again???
           saveStrings(user.userFile, user.lines);
-  
-  
+
+
           // save time to times list
           times[taskIndex] = millis() - startTime;
           times[taskIndex] = millis() - startTime;
           //println("time: " + times[taskIndex]);
-  
-  
+
+
           if (taskIndex == 4)
           {
             // starts star animation
             starAnimationTime = 0;
-  
+
             // calculate average
             int avg = 0;
             for (int i = 0; i < 5; i++)
               avg += times[i];
             avg /= 5;
             println("avg: " + avg);
-  
-  
+
+
             // save average and params
-  
+
             // save data here. avg & currentTaskSet.params
-  
+
             user.saveNewData(avg, currentTaskSet.params, calcType);
             //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
-            
+
             // update stars
           }
-        }
-        else if (!showAnswer)
+        } else if (!showAnswer)
         {
           if (taskIndex == 4)
           {
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-          }
-          else
+          } else
             taskIndex++;
-            
+
           startTask();
         }
-        
       }
     }
     if (theEvent.getController().getName() == "tilbage")
