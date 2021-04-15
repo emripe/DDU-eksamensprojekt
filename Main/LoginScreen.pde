@@ -1,8 +1,8 @@
 class LoginScreen extends Screen
 {
-  Button Login = cp5.addButton("Login");
-  Textfield Username = cp5.addTextfield("Username");
-  Textfield Password = cp5.addTextfield("Password");
+  Button Login = cp5.addButton("Log ind");
+  Textfield Username = cp5.addTextfield("Brugernavn");
+  Textfield Password = cp5.addTextfield("Kodeord");
   CColor c = new CColor();
   String nameInput;
   String passInput;
@@ -55,7 +55,7 @@ class LoginScreen extends Screen
   void HandleEvent(ControlEvent theEvent)
   {
     button.play(); 
-    if (theEvent.getController().getName() == "Login")
+    if (theEvent.getController().getName() == "Log ind")
     {
       File file = dataFile("data/" + nameInput +".txt");
       boolean existingUser;
