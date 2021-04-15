@@ -155,7 +155,7 @@ class TaskScreen extends Screen
     userStarCount
       .setPosition(width/3*2+30, 35)
       .setFont(DefaultFont)
-      .setText("3")
+      .setText(str(user.starCount))
       .setColorValue(color(0));
     if (user.dataSetCount() > 0)
       currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(15, calcType), user.dataSetCount()), calcType);
