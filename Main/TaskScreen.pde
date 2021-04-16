@@ -362,13 +362,11 @@ class TaskScreen extends Screen
 
 
             // save average and params
-
-            // save data here. avg & currentTaskSet.params
-
             user.saveNewData(avg, currentTaskSet.params, calcType);
-            //println("old params: " + currentTaskSet.params.digits + "; " + currentTaskSet.params.carryRatio);
 
             // update stars
+            user.starCount += starCount;
+            user.saveStars();
           }
         }
         else if (!showAnswer)
@@ -378,8 +376,6 @@ class TaskScreen extends Screen
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-            user.starCount += starCount;
-            user.saveStars();
           }
           else
           {

@@ -55,6 +55,7 @@ class MainScreen extends Screen
       .setImage(tavle);
     
       fill(187,96,86);
+      textAlign(LEFT);
       textFont(Font);
     text("Regneregler", 168,s+s+50);
       fill(94,134,197);
