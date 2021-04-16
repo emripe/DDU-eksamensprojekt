@@ -82,22 +82,22 @@ class StatisticsScreen extends Screen
   
       case "Button 0":
         Close();
-        currentScreen = new StatisticsDetailedScreen();
+        currentScreen = new StatisticsDetailedScreen(1);
         break;
   
       case "Button 1":
         Close();
-        currentScreen = new StatisticsDetailedScreen();
+        currentScreen = new StatisticsDetailedScreen(2);
         break;
   
       case "Button 2":
         Close();
-        currentScreen = new StatisticsDetailedScreen();
+        currentScreen = new StatisticsDetailedScreen(3);
         break;
   
       case "Button 3":
         Close();
-        currentScreen = new StatisticsDetailedScreen();
+        currentScreen = new StatisticsDetailedScreen(4);
         break;
     }
   }

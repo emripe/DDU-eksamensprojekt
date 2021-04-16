@@ -44,9 +44,6 @@ class TaskScreen extends Screen
   {
     this.calcType = calcType;
 
-    user.tasksCounter[0] = int(user.lines[1]);
-    user.tasksCounterCorrect[0] = int(user.lines[2]);
-
 
     for (int i = 0; i < buttonCount; i++)
     {
@@ -288,25 +285,32 @@ class TaskScreen extends Screen
         showAnswer = !showAnswer;
         if (showAnswer)
         {
-          // increment task counter
-          user.tasksCounter[0]++;
-          user.lines[1] = str(user.tasksCounter[0]);
           switch(calcType)
           {
           case addition:
             user.tasksCounter[1]++;
+            user.lines[3] = str(user.tasksCounter[1]);
             break;
+
           case subtraction:
             user.tasksCounter[2]++;
+            user.lines[5] = str(user.tasksCounter[2]);
+
             break;
           case multiplication:
             user.tasksCounter[3]++;
+            user.lines[7] = str(user.tasksCounter[3]);
+
             break;
           case division:
             user.tasksCounter[4]++;
+            user.lines[9] = str(user.tasksCounter[4]);
+
             break;
           }
-
+          // increment task counter
+          user.tasksCounter[0]++;
+          user.lines[1] = str(user.tasksCounter[0]);
 
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
