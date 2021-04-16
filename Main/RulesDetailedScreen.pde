@@ -152,3 +152,58 @@ class multiplikation extends Screen
     }
   }
 }
+
+
+
+
+class division extends Screen
+{
+  Button tilbage = cp5.addButton("tilbage");
+  Button division = cp5.addButton("division");
+  Button invis = cp5.addButton("invis");
+  CColor cA = new CColor();
+  int s = 250;
+  public division()
+  {
+    background(249, 158, 184);
+    
+    cA
+      .setActive(color(255, 153, 176))
+      .setBackground(color(224, 99, 145))
+      .setForeground(color(255, 123, 166));
+    division
+      .setPosition(1800, 1600)
+      .setSize(s, s)
+      .setColor(cA)
+      .setFont(DefaultFont);
+    invis
+      .setPosition(1900, 10)
+      .setSize(s, s)
+      .setColor(cA);
+      
+    println("LOOOOL");
+  }
+  void Update()
+  {
+    tilbage
+      .setPosition(20, 20)
+      .setSize(200, 50)
+      .setColor(cA)
+      .setFont(DefaultFont);
+  }
+  void Close()
+  {
+    tilbage.remove();
+    division.remove();
+  }
+  
+  void HandleEvent(ControlEvent theEvent)
+  {
+    button.play();
+    if (theEvent.getController().getName() == "tilbage")
+    {
+      Close();
+      currentScreen = new RulesScreen();
+    }
+  }
+}

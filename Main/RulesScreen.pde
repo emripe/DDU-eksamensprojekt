@@ -3,8 +3,13 @@ class RulesScreen extends Screen
   Button addition = cp5.addButton("addition");
   Button subtraktion = cp5.addButton("subtraktion");
   Button multiplikation = cp5.addButton("multiplikation");
+  Button division = cp5.addButton("division");
   Button tilbage = cp5.addButton("tilbage");
   CColor cA = new CColor();
+  PImage addBog = loadImage("AdditionsBog.png");
+  PImage subBog = loadImage("SubtraktionsBog.png");
+  PImage mulBog = loadImage("MultiplikationsBog.png");
+  PImage divBog = loadImage("DivisionsBog.png");
   int s = 250;
   
   RulesScreen()
@@ -17,24 +22,35 @@ class RulesScreen extends Screen
       
     addition
       .setPosition(100, s)
-      .setSize(s, s)
+      .setSize(217, s)
       .setColor(cA)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setImage(addBog);
     subtraktion
-      .setPosition(300+175, s)
-      .setSize(s, s)
+      .setPosition(s+100, s)
+      .setSize(217, s)
       .setColor(cA)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setImage(subBog);
     multiplikation
-      .setPosition(width-100-s, s)
-      .setSize(s, s)
+      .setPosition(s+100+s, s)
+      .setSize(217, s)
       .setColor(cA)
-      .setFont(DefaultFont);
+      .setFont(DefaultFont)
+      .setImage(mulBog);
+    division
+      .setPosition(s+100+s+s, s)
+      .setSize(217, s)
+      .setColor(cA)
+      .setFont(DefaultFont)
+      .setImage(divBog);
     tilbage
       .setPosition(20, 20)
       .setSize(200, 50)
       .setColor(cA)
       .setFont(DefaultFont);
+    
+    AddHiddenButtons();
   }
   
   void Close()
@@ -42,6 +58,7 @@ class RulesScreen extends Screen
     addition.remove();
     subtraktion.remove();
     multiplikation.remove();
+    division.remove();
     tilbage.remove();
   }
   void HandleEvent(ControlEvent theEvent)
@@ -71,6 +88,11 @@ class RulesScreen extends Screen
     {
       Close();
       currentScreen = new multiplikation();
+    }
+    if (theEvent.getController().getName() == "division")
+    {
+      Close();
+      currentScreen = new division();
     }
   }
 }
