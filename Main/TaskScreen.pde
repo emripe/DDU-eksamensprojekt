@@ -6,6 +6,8 @@ class TaskScreen extends Screen
   Button tilbage = cp5.addButton("tilbage");
   Textfield calcInput = cp5.addTextfield("calcInput");
   Textarea info = cp5.addTextarea("info");
+  String labelText = " ";
+  int labelTextWidth = 0;
   Textarea taskProgress = cp5.addTextarea("taskProgress");
   Textarea title = cp5.addTextarea("title");
   Textarea username = cp5.addTextarea("username");
@@ -55,9 +57,9 @@ class TaskScreen extends Screen
 
 
     c
-      .setActive(color(228, 232, 235))
-      .setBackground(color(195, 205, 212))
-      .setForeground(color(223, 231, 237));
+      .setActive(color(228, 232, 235, 0))
+      .setBackground(color(37, 89, 67))
+      .setForeground(color(223, 231, 237, 0));
 
     cA
       .setActive(color(255, 153, 176))
@@ -109,11 +111,11 @@ class TaskScreen extends Screen
       .setFont(DefaultFont);
 
     info
-      .setSize(1000, 30)
-      .setPosition(800, 400)
+      .setSize(labelTextWidth, 1000)
+      .setPosition(600, height/2)
       .setText("popoo")
-      .setColor(color(0))
-      .setFont(DefaultFont);
+      .setColor(color(255))
+      .setFont(BlackboardFont);
 
     taskProgress
       .setSize(1000, 30)
@@ -122,18 +124,20 @@ class TaskScreen extends Screen
       .setColor(color(0))
       .setFont(DefaultFont);
 
+
     calcInput
       .setSize(200, 60)
-      .setPosition(width/5+40, height/2)
+      .setPosition(800, height/2)
       .setColor(c)
-      .setColorCaptionLabel(color(0))
-      .setColorValue(color(0))
+      .setColorCaptionLabel(color(0, 255, 0, 0))
+      .setColorValue(color(255))
       .setLabel("")
-      .setInputFilter(ControlP5.INTEGER);
+      .setInputFilter(ControlP5.INTEGER)
+      .setFont(BlackboardFont);
 
     answerButton
       .activateBy(ControlP5.RELEASE)
-      .setPosition(width/5+40, height/2-35)
+      .setPosition(800, 600)
       .setSize(100, 30)
       .setFont(DefaultFont);
 
@@ -190,7 +194,7 @@ class TaskScreen extends Screen
             starCount = 0;
           }
         }
-          
+
         if (localTime >= starAnimationDuration)
           continue;
 
@@ -231,18 +235,27 @@ class TaskScreen extends Screen
     switch (calcType)
     {
     case addition:
-      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
+      info.setText(labelText);
       break;
     case subtraction:
-      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " - " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " - " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
+      info.setText(labelText);
       break;
     case multiplication:
-      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " * " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " * " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
+      info.setText(labelText);
       break;
     case division:
-      info.setText(currentTaskSet.tasks[taskIndex].numbers[0] + " / " + currentTaskSet.tasks[taskIndex].numbers[1]);
+      labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " / " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
+      info.setText(labelText);
       break;
     }
+
+    labelTextWidth = int(textWidth(labelText))*3;
+    info.setSize(labelTextWidth, 1000);
+    info.setPosition(850-labelTextWidth, height/2);
+
     taskProgress.setText("opgave " + (taskIndex+1) + " ud af 5");
     startTime = millis();
 
@@ -368,19 +381,19 @@ class TaskScreen extends Screen
             user.starCount += starCount;
             user.saveStars();
           }
-        }
-        else if (!showAnswer)
+        } else if (!showAnswer)
         {
           if (taskIndex == 4)
           {
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
+            user.starCount += starCount;
+            user.saveStars();
           }
           else
           {
             taskIndex++;
-            
           }
 
           startTask();

@@ -7,6 +7,7 @@ class MainScreen extends Screen
   CColor cB = new CColor();
   CColor cG = new CColor();
   int s = 250;
+  PImage landscape = loadImage("landscape.png");
   PImage lommeregner = loadImage("lommeregner.png");
   PImage tavle = loadImage("tavle.png");
   PImage bog = loadImage("bog.png");
@@ -15,7 +16,7 @@ class MainScreen extends Screen
 
   MainScreen()
   {
-    background(221, 239, 255);
+    background(landscape);
     Font = createFont("Comic Sans MS",28);
 
     cG

@@ -4,6 +4,7 @@ import processing.sound.*;
 SoundFile button;
 SoundFile Star;
 PFont DefaultFont;
+PFont BlackboardFont;
 Screen currentScreen;
 MachineLearning ml = new MachineLearning();
 UserData user;
@@ -19,6 +20,7 @@ enum CalcType
 void setup() {
   cp5 = new ControlP5(this);
   DefaultFont = createFont("Arial", 22);
+  BlackboardFont = createFont("Arial", 60);
   size(1200, 800);
   currentScreen = new LoginScreen();
   button = new SoundFile(this, "data/Mouse Click - Sound Effect (HD).mp3");
