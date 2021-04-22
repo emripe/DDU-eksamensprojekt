@@ -1,11 +1,13 @@
 class Parameters
 {
 
-  float digits;
+  float digits1;
+  float digits2;
   float carryRatio;
   
-  public Parameters(float digits, float carryRatio){
-    this.digits = digits;
+  public Parameters(float digits1, float digits2, float carryRatio){
+    this.digits1 = digits1;
+    this.digits2 = digits2;
     this.carryRatio = carryRatio;
   }
 }
