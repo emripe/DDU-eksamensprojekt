@@ -121,7 +121,7 @@ class TaskScreen extends Screen
     taskProgress
       .setSize(1000, 30)
       .setPosition(width/5*4, 110)
-      .setColor(color(0))
+      .setColor(color(255))
       .setFont(DefaultFont);
 
 
@@ -136,7 +136,7 @@ class TaskScreen extends Screen
       .setFont(BlackboardFont);
       
     resultText
-      .setSize(1000, 1000)
+      .setSize(1000, 100)
       .setPosition(600, height/2+100)
       .setColor(color(255))
       .setFont(DefaultFont)
@@ -144,7 +144,7 @@ class TaskScreen extends Screen
 
     answerButton
       .activateBy(ControlP5.RELEASE)
-      .setPosition(800, 600)
+      .setPosition(1000, 600)
       .setSize(100, 30)
       .setFont(DefaultFont);
 
@@ -336,6 +336,7 @@ class TaskScreen extends Screen
 
 
           resultText.show();
+          answerButton.setLabel("næste");
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
           {
@@ -401,13 +402,12 @@ class TaskScreen extends Screen
         } else if (!showAnswer)
         {
           resultText.hide();
+          answerButton.setLabel("svar");
           if (taskIndex == 4)
           {
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-            user.starCount += starCount;
-            user.saveStars();
           }
           else
           {
