@@ -77,8 +77,6 @@ class subtraktion extends Screen
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
       .setForeground(color(255, 123, 166));
-      
-    println("yooooo");
   }
   void Update()
   {
@@ -125,8 +123,6 @@ class multiplikation extends Screen
       .setSize(s, s)
       .setColor(cA)
       .setFont(DefaultFont);
-      
-    println("lmaaooooo");
   }
   void Update()
   {
@@ -180,8 +176,6 @@ class division extends Screen
       .setPosition(1900, 10)
       .setSize(s, s)
       .setColor(cA);
-      
-    println("LOOOOL");
   }
   void Update()
   {
