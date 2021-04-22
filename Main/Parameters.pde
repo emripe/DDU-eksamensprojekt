@@ -1,11 +1,10 @@
 class Parameters
 {
-  //String operator;
+
   float digits;
   float carryRatio;
   
-  public Parameters(/*String operator,*/ float digits, float carryRatio){
-    //this.operator = operator;
+  public Parameters(float digits, float carryRatio){
     this.digits = digits;
     this.carryRatio = carryRatio;
   }
