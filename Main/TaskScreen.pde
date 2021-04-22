@@ -121,7 +121,7 @@ class TaskScreen extends Screen
     taskProgress
       .setSize(1000, 30)
       .setPosition(width/5*4, 110)
-      .setColor(color(0))
+      .setColor(color(255))
       .setFont(DefaultFont);
 
 
@@ -136,7 +136,7 @@ class TaskScreen extends Screen
       .setFont(BlackboardFont);
       
     resultText
-      .setSize(1000, 1000)
+      .setSize(1000, 100)
       .setPosition(600, height/2+100)
       .setColor(color(255))
       .setFont(DefaultFont)
@@ -218,7 +218,7 @@ class TaskScreen extends Screen
         image(starImg, width/5*4 + (i*30), 20);
       }
     }
-    calcInput.setFocus(true);
+    //calcInput.setFocus(true);
   }
 
   void Close()
