@@ -34,7 +34,7 @@ class TaskScreen extends Screen
   int starAnimationDuration = 60;
 
   int buttonCount = 4;
-  Button [] taskTypes = new Button [buttonCount];
+  Button [] taskTypes = new Button[buttonCount];
 
   boolean showAnswer = false;
 
@@ -165,10 +165,13 @@ class TaskScreen extends Screen
       .setFont(DefaultFont)
       .setText(str(user.starCount))
       .setColorValue(color(0));
+      
     if (user.dataSetCount() > 0)
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(15, calcType), user.dataSetCount()), calcType);
+      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(ml.targetTime, calcType), user.dataSetCount()), calcType);
     else
+
       currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
+      
     startTask();
   }
   void Update()
@@ -231,6 +234,7 @@ class TaskScreen extends Screen
     tilbage.remove();
     username.remove();
     userStarCount.remove();
+    resultText.remove();
     for (int i = 0; i < buttonCount; i++)
     {
       taskTypes[i].remove();
@@ -277,19 +281,23 @@ class TaskScreen extends Screen
     switch (theEvent.getController().getName())
     {
     case  "Button 0":
+      Close();
       currentScreen = new TaskScreen(CalcType.addition);
       user.calcType = calcType;
       break;
     case  "Button 1":
+      Close();
       currentScreen = new TaskScreen(CalcType.subtraction);
       user.calcType = calcType;
       break;
     case  "Button 2":
+      Close();
       calcType = CalcType.multiplication;
       currentScreen = new TaskScreen(CalcType.multiplication);
       user.calcType = calcType;
       break;
     case  "Button 3":
+      Close();
       calcType = CalcType.division;
       currentScreen = new TaskScreen(CalcType.division);
       user.calcType = calcType;
@@ -336,7 +344,7 @@ class TaskScreen extends Screen
 
 
           resultText.show();
-          answerButton.setLabel("næste");
+          answerButton.setLabel("");
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
           {
@@ -402,11 +410,10 @@ class TaskScreen extends Screen
         } else if (!showAnswer)
         {
           resultText.hide();
-          answerButton.setLabel("svar");
           if (taskIndex == 4)
           {
             taskIndex = 0;
-            Parameters p = user.getBestDataPoints(15, calcType);
+            TimeParametersPair p = user.getBestDataPoints(ml.targetTime, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
           }
           else

@@ -9,3 +9,14 @@ class Parameters
     this.carryRatio = carryRatio;
   }
 }
+
+class TimeParametersPair
+{
+  float time;
+  Parameters params;
+  public TimeParametersPair(float time, Parameters params)
+  {
+    this.time = time;
+    this.params = params;
+  }
+}

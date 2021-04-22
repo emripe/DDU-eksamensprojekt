@@ -111,6 +111,7 @@ class UserData {
     lines[11] = str(starCount);
     saveStrings(userFile, lines);
   }
+  
   void saveNewData(float time, Parameters parameter, CalcType calcType) { // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
     String newLine = time/1000+";"+parameter.digits+";"+parameter.carryRatio;
 
@@ -135,7 +136,7 @@ class UserData {
   }
 
 
-  Parameters getBestDataPoints(int optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
+  TimeParametersPair getBestDataPoints(float optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
     this.calcType = calcType;
     int bestNum=0;            // nummer på bedste værdi 
     float bestVal=2000000000; // bedste værdis afstand fra den optimale tid
@@ -177,7 +178,7 @@ class UserData {
 
     float[] taskInfo = float(split(lines[bestNum], ";"));
     bestDataPoints = new Parameters(taskInfo[1], taskInfo[2]);
-    return(bestDataPoints);
+    return new TimeParametersPair(bestVal, bestDataPoints);
   }
 
 
