@@ -144,7 +144,7 @@ class TaskScreen extends Screen
 
     answerButton
       .activateBy(ControlP5.RELEASE)
-      .setPosition(800, 600)
+      .setPosition(1000, 600)
       .setSize(100, 30)
       .setFont(DefaultFont);
 
@@ -218,7 +218,7 @@ class TaskScreen extends Screen
         image(starImg, width/5*4 + (i*30), 20);
       }
     }
-    //calcInput.setFocus(true);
+    calcInput.setFocus(true);
   }
 
   void Close()
@@ -406,8 +406,6 @@ class TaskScreen extends Screen
             taskIndex = 0;
             Parameters p = user.getBestDataPoints(15, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
-            user.starCount += starCount;
-            user.saveStars();
           }
           else
           {
