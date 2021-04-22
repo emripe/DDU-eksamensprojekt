@@ -336,6 +336,7 @@ class TaskScreen extends Screen
 
 
           resultText.show();
+          answerButton.setLabel("næste");
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
           {
@@ -401,6 +402,7 @@ class TaskScreen extends Screen
         } else if (!showAnswer)
         {
           resultText.hide();
+          answerButton.setLabel("svar");
           if (taskIndex == 4)
           {
             taskIndex = 0;
