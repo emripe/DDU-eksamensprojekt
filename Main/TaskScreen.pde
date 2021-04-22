@@ -12,6 +12,7 @@ class TaskScreen extends Screen
   Textarea title = cp5.addTextarea("title");
   Textarea username = cp5.addTextarea("username");
   Textarea userStarCount = cp5.addTextarea("userStarCount");
+  Textarea resultText = cp5.addTextarea("resultText"); 
   Button answerButton = cp5.addButton("svar");
   CColor c = new CColor();
   CColor cB = new CColor();
@@ -75,6 +76,7 @@ class TaskScreen extends Screen
       .setActive(color(177, 206, 250))
       .setBackground(color(153, 181, 225))
       .setForeground(color(165, 195, 242));
+      
     for (int i = 0; i < buttonCount; i++)
     {
       switch(i)
@@ -113,14 +115,12 @@ class TaskScreen extends Screen
     info
       .setSize(labelTextWidth, 1000)
       .setPosition(600, height/2)
-      .setText("popoo")
       .setColor(color(255))
       .setFont(BlackboardFont);
 
     taskProgress
       .setSize(1000, 30)
       .setPosition(width/5*4, 110)
-      .setText("popoo")
       .setColor(color(0))
       .setFont(DefaultFont);
 
@@ -134,6 +134,13 @@ class TaskScreen extends Screen
       .setLabel("")
       .setInputFilter(ControlP5.INTEGER)
       .setFont(BlackboardFont);
+      
+    resultText
+      .setSize(1000, 1000)
+      .setPosition(600, height/2+100)
+      .setColor(color(255))
+      .setFont(DefaultFont)
+      .hide();
 
     answerButton
       .activateBy(ControlP5.RELEASE)
@@ -298,6 +305,8 @@ class TaskScreen extends Screen
         showAnswer = !showAnswer;
         if (showAnswer)
         {
+          
+          
           switch(calcType)
           {
           case addition:
@@ -325,6 +334,8 @@ class TaskScreen extends Screen
           user.tasksCounter[0]++;
           user.lines[1] = str(user.tasksCounter[0]);
 
+
+          resultText.show();
           // check if correct
           if (Long.parseLong(calcInput.getText()) == currentTaskSet.tasks[taskIndex].getAnswer())
           {
@@ -350,6 +361,12 @@ class TaskScreen extends Screen
             }
             user.tasksCounterCorrect[0]++;
             user.lines[2] = str(user.tasksCounterCorrect[0]);
+            
+            resultText.setText("Det er rigtigt!");
+          }
+          else
+          {
+            resultText.setText("Desværre, men det rigtige svar er " + currentTaskSet.tasks[taskIndex].getAnswer());
           }
           // save userdata again???
           saveStrings(user.userFile, user.lines);
@@ -383,6 +400,7 @@ class TaskScreen extends Screen
           }
         } else if (!showAnswer)
         {
+          resultText.hide();
           if (taskIndex == 4)
           {
             taskIndex = 0;
