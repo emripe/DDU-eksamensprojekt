@@ -60,32 +60,10 @@ class UserData {
       subtractionPos=2;
       multiplicationPos=3;
       divisionPos=4;
-      for (int i = 0; i < 4; i++)
+      for (CalcType c : CalcType.values())
       {
-        switch(i)
-        {
-        case 0:
-          saveNewData(0, new Parameters(0, 0), CalcType.addition);
-
-          break;
-
-        case 1:
-          saveNewData(0, new Parameters(0, 0), CalcType.subtraction);
-
-          break;
-
-        case 2:
-          saveNewData(0, new Parameters(0, 0), CalcType.multiplication);
-
-          break;
-
-        case 3:
-          saveNewData(0, new Parameters(0, 0), CalcType.division);
-
-          break;
-        }
+        saveNewData(0, new Parameters(0, 0, 0), c);
       }
-
       saveStrings(userFile, lines); // 1. linje i filen bliver ens password og de næste 4 bliver de fire regnekategorier
       existingUser=true;
     }
@@ -111,8 +89,9 @@ class UserData {
     lines[11] = str(starCount);
     saveStrings(userFile, lines);
   }
+  
   void saveNewData(float time, Parameters parameter, CalcType calcType) { // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
-    String newLine = time/1000+";"+parameter.digits+";"+parameter.carryRatio;
+    String newLine = time/1000+";"+parameter.digits1+";"+parameter.digits2+";"+parameter.carryRatio;
 
     findPos();
     switch (calcType)
@@ -135,7 +114,7 @@ class UserData {
   }
 
 
-  Parameters getBestDataPoints(int optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
+  TimeParametersPair getBestDataPoints(float optimalTime, CalcType calcType) { // tilføj regnetyper og find den bedste værdi under det rigtige emne
     this.calcType = calcType;
     int bestNum=0;            // nummer på bedste værdi 
     float bestVal=2000000000; // bedste værdis afstand fra den optimale tid
@@ -176,8 +155,8 @@ class UserData {
     }
 
     float[] taskInfo = float(split(lines[bestNum], ";"));
-    bestDataPoints = new Parameters(taskInfo[1], taskInfo[2]);
-    return(bestDataPoints);
+    bestDataPoints = new Parameters(taskInfo[1], taskInfo[2], taskInfo[3]);
+    return new TimeParametersPair(bestVal, bestDataPoints);
   }
 
 

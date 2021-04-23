@@ -24,6 +24,7 @@ void setup() {
   size(1200, 800);
   currentScreen = new LoginScreen();
   button = new SoundFile(this, "data/Mouse Click - Sound Effect (HD).mp3");
+  button.amp(0.1);
   Star = new SoundFile(this, "data/completetask.mp3");
 }
 
