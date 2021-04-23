@@ -166,8 +166,8 @@ class TaskScreen extends Screen
       .setText(str(user.starCount))
       .setColorValue(color(0));
       
-    if (user.dataSetCount() > 0)
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(ml.targetTime, calcType), user.dataSetCount()), calcType);
+    if (user.dataSetCount(calcType) > 0)
+      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(ml.targetTime, calcType), user.dataSetCount(calcType)), calcType);
     else
 
       currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
@@ -415,7 +415,7 @@ class TaskScreen extends Screen
           {
             taskIndex = 0;
             TimeParametersPair p = user.getBestDataPoints(ml.targetTime, calcType);
-            currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount()), calcType);
+            currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount(calcType)), calcType);
           }
           else
           {

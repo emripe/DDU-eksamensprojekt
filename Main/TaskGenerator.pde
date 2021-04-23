@@ -41,9 +41,9 @@ Task GenerateTask(Parameters params, CalcType calcType) { // Funktion der genere
       }
       else if (i == digits1-1 && num2>num1) {// til det forreste ciffer. Sørger for at resultatet ikke er negativt
         
+        println("---------------------------");
         dig1 = int(random(0, 9));
         dig2 = int(random(0, dig1));
-        println("dig1: " + dig1);
         num1 += dig1*pow(10,i);
         num2 += dig2*pow(10,i);
         
@@ -73,7 +73,10 @@ Task GenerateTask(Parameters params, CalcType calcType) { // Funktion der genere
     }  
     break;
   case multiplication:
-    
+    for (int i = 0; i < digits1; i++)
+    {
+      
+    }
 
     break;
   case division:

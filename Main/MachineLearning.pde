@@ -1,7 +1,7 @@
  class MachineLearning
 {
   int minDataPoints = 5;
-  float targetTime = 3;
+  float targetTime = 15;
   Parameters GenerateParameters(TimeParametersPair tpPair, float dataCount)
   {
     Parameters baseParams = tpPair.params;
