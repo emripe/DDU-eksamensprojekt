@@ -7,6 +7,7 @@ class LoginScreen extends Screen
   String nameInput;
   String passInput;
   PVector buttonPos = new PVector(width/2-75, height/3*2);
+  PImage landscape = loadImage("solopgang.png");
 
   LoginScreen()
   {
@@ -41,7 +42,7 @@ class LoginScreen extends Screen
 
   void Update()
   {
-    background(221, 239, 255);
+    background(landscape);
     
     nameInput = Username.getText();
     passInput = Password.getText();
