@@ -83,25 +83,21 @@ class TaskScreen extends Screen
       {
       case 0:
         taskTypes[i]
-          .setColor(cA)
           .setImages(addition);
         break;
 
       case 1:
         taskTypes[i]
-          .setColor(c)
           .setImages(subtraktion);
         break;
 
       case 2:
         taskTypes[i]
-          .setColor(cG)
           .setImages(multiplikation);
         break;
 
       case 3:
         taskTypes[i]
-          .setColor(cB)
           .setImages(division);
         break;
       }
