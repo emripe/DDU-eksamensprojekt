@@ -18,10 +18,10 @@ class TaskScreen extends Screen
   CColor cB = new CColor();
   CColor cA = new CColor();
   CColor cG = new CColor();
-  PImage addition = loadImage("AdditionsTegn.png");
-  PImage subtraktion = loadImage("SubtraktionsTegn.png");
-  PImage multiplikation = loadImage("MultiplikationsTegn.png");
-  PImage division = loadImage("DivisionsTegn.png");
+  PImage[] addition = {loadImage("AdditionsTegn.png"), loadImage("AdditionsTegn2.png"), loadImage("AdditionsTegn3.png")};
+  PImage[] subtraktion = {loadImage("SubtraktionsTegn.png"), loadImage("SubtraktionsTegn2.png"), loadImage("SubtraktionsTegn3.png")};
+  PImage[] multiplikation = {loadImage("MultiplikationsTegn.png"), loadImage("MultiplikationsTegn2.png"), loadImage("MultiplikationsTegn3.png")};
+  PImage[] division = {loadImage("DivisionsTegn.png"), loadImage("DivisionsTegn2.png"), loadImage("DivisionsTegn3.png")};
   String fileString;
   int taskIndex = 0;
   int startTime;
@@ -83,26 +83,22 @@ class TaskScreen extends Screen
       {
       case 0:
         taskTypes[i]
-          .setColor(cA)
-          .setImage(addition);
+          .setImages(addition);
         break;
 
       case 1:
         taskTypes[i]
-          .setColor(c)
-          .setImage(subtraktion);
+          .setImages(subtraktion);
         break;
 
       case 2:
         taskTypes[i]
-          .setColor(cG)
-          .setImage(multiplikation);
+          .setImages(multiplikation);
         break;
 
       case 3:
         taskTypes[i]
-          .setColor(cB)
-          .setImage(division);
+          .setImages(division);
         break;
       }
     }
