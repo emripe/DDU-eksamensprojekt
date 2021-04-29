@@ -161,12 +161,11 @@ class TaskScreen extends Screen
       .setFont(DefaultFont)
       .setText(str(user.starCount))
       .setColorValue(color(0));
-      
-    if (user.dataSetCount(calcType) > 0)
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(user.getBestDataPoints(ml.targetTime, calcType), user.dataSetCount(calcType)), calcType);
-    else
-
-      currentTaskSet = GenerateTaskSet(ml.GenerateParameters(null, 0), calcType);
+    
+    TimeParametersPair p = null;
+    if (user.dataSetCount(calcType) > ml.minDataPoints)
+       p = user.getBestDataPoints(ml.targetTime, calcType);
+    currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p), calcType);
       
     startTask();
   }
@@ -410,8 +409,10 @@ class TaskScreen extends Screen
           if (taskIndex == 4)
           {
             taskIndex = 0;
-            TimeParametersPair p = user.getBestDataPoints(ml.targetTime, calcType);
-            currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p, user.dataSetCount(calcType)), calcType);
+            TimeParametersPair p = null;
+            if (user.dataSetCount(calcType) > ml.minDataPoints)
+               p = user.getBestDataPoints(ml.targetTime, calcType);
+            currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p), calcType);
           }
           else
           {

@@ -2,21 +2,25 @@
 {
   int minDataPoints = 5;
   float targetTime = 15;
-  Parameters GenerateParameters(TimeParametersPair tpPair, float dataCount)
+  
+  // genererer parametre til opgaver. tager tid og parametre sammen som parameter
+  Parameters GenerateParameters(TimeParametersPair tpPair)
   {
     Parameters baseParams = tpPair.params;
     float time = tpPair.time;
     
+    // output parametre
     float digits1 = 0;
     float digits2 = 0;
     float carryRatio = 0;
     
-    if (baseParams == null || dataCount < minDataPoints)
+    // hvis ingen parametre er inputtet (f.eks. hvis der ikke er nok datapunkter), vil den generere tilfældige 
+    if (baseParams == null)
     {
-      println("base: none");
       digits1 = random(0.5,2.5);
       digits2 = random(0.5,2.5);
-      if (digits2 > digits1) // swap
+      // første tal vil altid være størst
+      if (digits2 > digits1) 
       {
         float tmp = digits1;
         digits1 = digits2;
@@ -24,26 +28,25 @@
       }
       carryRatio = random(1);
     }
+    
+    // hvis parametre er givet
     else
     {
-      float range = pow((targetTime-time)/targetTime,1.1); //(1-/dataCount/2)
-      digits1 = max(0.5, random(baseParams.digits1-range, baseParams.digits1+range));
-      digits2 = max(0.5, random(baseParams.digits2-range, baseParams.digits2+range));
-      if (digits2 > digits1) // swap
+      // varians afhænger af, hvor langt svaret er fra målet. max 1
+      float maxVariation = constrain(pow((targetTime-time)/targetTime,1.5), 0, 1);
+      digits1 = max(0.5, random(baseParams.digits1-maxVariation, baseParams.digits1+maxVariation));
+      digits2 = max(0.5, random(baseParams.digits2-maxVariation, baseParams.digits2+maxVariation));
+      // første tal vil altid være størst
+      if (digits2 > digits1)
       {
         float tmp = digits1;
         digits1 = digits2;
         digits2 = tmp;
       }
-      carryRatio = constrain(random(baseParams.carryRatio - range, baseParams.carryRatio + range), 0, 1);
-      
-      println("base: " + baseParams.digits1 + ", " + baseParams.digits2 + ", " + baseParams.carryRatio);
-      println("range: " + range);
+      carryRatio = constrain(random(baseParams.carryRatio - maxVariation, baseParams.carryRatio + maxVariation), 0, 1);
     }
     
     Parameters p = new Parameters(digits1, digits2, carryRatio);
-    println("new: " + p.digits1 + ", " + p.digits2 + ", " + p.carryRatio);
-    println();
     return p;
   }
 }
