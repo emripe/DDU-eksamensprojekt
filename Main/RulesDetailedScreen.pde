@@ -6,7 +6,7 @@ class Addition extends Screen
   CColor cA = new CColor();
   int s = 250;
   float ix, iy, iw, ih;
-  
+
   public Addition()
   {
     background(249, 158, 184);
@@ -14,18 +14,17 @@ class Addition extends Screen
     fill(255, 235, 234);
     rect(50, 120, width-50*2, height-79);
     lines = loadStrings("data/text/addition.txt");
-    
-    for(int i = 0; i <lines.length; i++){
+
+    for (int i = 0; i <lines.length; i++) {
       fill(0);
       text(lines[i], 80, 30*i+175);
     }
     img = loadImage("2+2.png");
-    
+
     cA
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
       .setForeground(color(255, 123, 166));
-
   }
   void Update()
   {
@@ -54,25 +53,25 @@ class Addition extends Screen
 
 
 
-class subtraktion extends Screen
+class Subtraktion extends Screen
 {
   Button tilbage = cp5.addButton("tilbage");
   CColor cA = new CColor();
   String[] lines;
-  
-  public subtraktion()
+
+  public Subtraktion()
   {
     background(249, 158, 184);
     noStroke();
     fill(255, 235, 234);
     rect(50, 120, width-50*2, height-79);
     lines = loadStrings("data/text/subtraktion.txt");
-    
-    for(int i = 0; i <lines.length; i++){
+
+    for (int i = 0; i <lines.length; i++) {
       fill(0);
       text(lines[i], 80, 30*i+175);
     }
-    
+
     cA
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
@@ -104,16 +103,16 @@ class subtraktion extends Screen
 
 
 
-class multiplikation extends Screen
+class Multiplikation extends Screen
 {
   Button tilbage = cp5.addButton("tilbage");
   Button division = cp5.addButton("division");
   CColor cA = new CColor();
   int s = 250;
-  public multiplikation()
+  public Multiplikation()
   {
     background(249, 158, 184);
-    
+
     cA
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
@@ -137,7 +136,7 @@ class multiplikation extends Screen
     tilbage.remove();
     division.remove();
   }
-  
+
   void HandleEvent(ControlEvent theEvent)
   {
     button.play();
@@ -152,17 +151,17 @@ class multiplikation extends Screen
 
 
 
-class division extends Screen
+class Division extends Screen
 {
   Button tilbage = cp5.addButton("tilbage");
   Button division = cp5.addButton("division");
   Button invis = cp5.addButton("invis");
   CColor cA = new CColor();
   int s = 250;
-  public division()
+  public Division()
   {
     background(249, 158, 184);
-    
+
     cA
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
@@ -190,7 +189,7 @@ class division extends Screen
     tilbage.remove();
     division.remove();
   }
-  
+
   void HandleEvent(ControlEvent theEvent)
   {
     button.play();

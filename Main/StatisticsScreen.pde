@@ -8,7 +8,7 @@ class StatisticsScreen extends Screen
   float[] angles;
   PieChart[] pc = new PieChart[4];
   PImage starImg = loadImage("star.png");
-  
+
   StatisticsScreen()
   {
     cG
@@ -44,7 +44,6 @@ class StatisticsScreen extends Screen
     text("x "+user.starCount, 600, 300);
     starImg.resize(0, 100);
     image(starImg, 480, 220);
-    
   }
   void Close()
   {
@@ -70,8 +69,8 @@ class PieChart
   float data[] = new float[2];
   float diameter;
   float x, y;
-  
-  
+
+
   PieChart(String title, float total, float correct, float x, float y, float diameter)
   {
     this.title = title;
@@ -90,15 +89,15 @@ class PieChart
     for (int i = 0; i < data.length; i++) {
       switch (i)
       {
-        case 0:
-          fill(153, 181, 225);
-          break;
-        case 1:
-          fill(225, 154, 153);
-          break;
-        default:
-          fill(153, 181, 181);
-          break;
+      case 0:
+        fill(153, 181, 225);
+        break;
+      case 1:
+        fill(225, 154, 153);
+        break;
+      default:
+        fill(153, 181, 181);
+        break;
       }
       arc(x, y, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
       lastAngle += radians(data[i]);
@@ -107,7 +106,6 @@ class PieChart
       textLeading(30);
       text(title, x, y-diameter*2/3);
       text(round(data[0]*100/360)+"%\nrigtige", x, y+diameter*2/3);
-      
     }
   }
 }

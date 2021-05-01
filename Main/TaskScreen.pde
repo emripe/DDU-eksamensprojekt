@@ -76,7 +76,7 @@ class TaskScreen extends Screen
       .setActive(color(177, 206, 250))
       .setBackground(color(153, 181, 225))
       .setForeground(color(165, 195, 242));
-      
+
     for (int i = 0; i < buttonCount; i++)
     {
       switch(i)
@@ -104,7 +104,7 @@ class TaskScreen extends Screen
     }
     title
       .setPosition(width/5+40, 20)
-      .setText("addition")
+      .setText("")
       .setColor(color(0))
       .setFont(DefaultFont);
 
@@ -130,7 +130,7 @@ class TaskScreen extends Screen
       .setLabel("")
       .setInputFilter(ControlP5.INTEGER)
       .setFont(BlackboardFont);
-      
+
     resultText
       .setSize(1000, 100)
       .setPosition(600, height/2+100)
@@ -161,12 +161,12 @@ class TaskScreen extends Screen
       .setFont(DefaultFont)
       .setText(str(user.starCount))
       .setColorValue(color(0));
-    
+
     TimeParametersPair p = null;
     if (user.dataSetCount(calcType) > ml.minDataPoints)
-       p = user.getBestDataPoints(ml.targetTime, calcType);
+      p = user.getBestDataPoints(ml.targetTime, calcType);
     currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p), calcType);
-      
+
     startTask();
   }
   void Update()
@@ -243,18 +243,22 @@ class TaskScreen extends Screen
     case addition:
       labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " + " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
       info.setText(labelText);
+      title.setText("Addition");
       break;
     case subtraction:
       labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " - " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
       info.setText(labelText);
+      title.setText("Subtraktion");
       break;
     case multiplication:
       labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " * " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
       info.setText(labelText);
+      title.setText("Multiplikation");
       break;
     case division:
       labelText = currentTaskSet.tasks[taskIndex].numbers[0] + " / " + currentTaskSet.tasks[taskIndex].numbers[1] + " = ";
       info.setText(labelText);
+      //title.setText("Division");
       break;
     }
 
@@ -308,8 +312,8 @@ class TaskScreen extends Screen
         showAnswer = !showAnswer;
         if (showAnswer)
         {
-          
-          
+
+
           switch(calcType)
           {
           case addition:
@@ -365,10 +369,9 @@ class TaskScreen extends Screen
             }
             user.tasksCounterCorrect[0]++;
             user.lines[2] = str(user.tasksCounterCorrect[0]);
-            
+
             resultText.setText("Det er rigtigt!");
-          }
-          else
+          } else
           {
             resultText.setText("Desværre, men det rigtige svar er " + currentTaskSet.tasks[taskIndex].getAnswer());
           }
@@ -411,10 +414,9 @@ class TaskScreen extends Screen
             taskIndex = 0;
             TimeParametersPair p = null;
             if (user.dataSetCount(calcType) > ml.minDataPoints)
-               p = user.getBestDataPoints(ml.targetTime, calcType);
+              p = user.getBestDataPoints(ml.targetTime, calcType);
             currentTaskSet = GenerateTaskSet(ml.GenerateParameters(p), calcType);
-          }
-          else
+          } else
           {
             taskIndex++;
           }

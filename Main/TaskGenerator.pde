@@ -5,86 +5,80 @@ Task GenerateTask(Parameters params, CalcType calcType) { // Funktion der genere
   int digits2 = round(params.digits2);
   float carryRatio = params.carryRatio;
   int lowerBound1=0, lowerBound2=0;
-  
+
   switch (calcType)
   {
-    
-    case addition:
-      for (int i = 0; i < digits1; i++)
+
+  case addition:
+    for (int i = 0; i < digits1; i++)
+    {
+      // sørger for at det største ciffer ikke er 0
+      if (i == digits1-1)
+        lowerBound1 = 1;
+      if (i == digits2-1)
+        lowerBound2 = 1;
+
+      if (digits2 <= i) // hvis num1 har flere cifre skal der kun tilføjes til num1
+        num1 += int(random(lowerBound1, 9))*pow(10, i);
+
+      // hvis der skal tilføjes cifre til begge tal
+      else
       {
-        // sørger for at det største ciffer ikke er 0
-        if (i == digits1-1)
-          lowerBound1 = 1;
-        if (i == digits2-1)
-          lowerBound2 = 1;
-        
-        if (digits2 <= i) // hvis num1 har flere cifre skal der kun tilføjes til num1
-          num1 += int(random(lowerBound1,9))*pow(10,i);
-        
-        // hvis der skal tilføjes cifre til begge tal
-        else
-        {
-          if (random(1) > carryRatio) // sum af de to tal er max 10
-          { 
-            dig1 = int(random(lowerBound1, 9));
-            dig2 = int(random(lowerBound2, 9-dig1));
-          } 
-          else // sum af de to tal er mindst 10
-          { 
-            dig1 = int(random(1, 9));
-            dig2 = int(random(10-dig1, 9));
-          }
-          // tilføj ciffer til tal
-          num1 += dig1*int(pow(10,i));
-          num2 += dig2*int(pow(10,i));
+        if (random(1) > carryRatio) // sum af de to tal er max 10
+        { 
+          dig1 = int(random(lowerBound1, 9));
+          dig2 = int(random(lowerBound2, 9-dig1));
+        } else // sum af de to tal er mindst 10
+        { 
+          dig1 = int(random(1, 9));
+          dig2 = int(random(10-dig1, 9));
         }
+        // tilføj ciffer til tal
+        num1 += dig1*int(pow(10, i));
+        num2 += dig2*int(pow(10, i));
       }
-      break;
-      
-    case subtraction:
-      lowerBound1 = 1;
-      lowerBound2 = 1;
-      for (int i=0; i<digits1; i++) {
-        if (digits2 <= i) // hvis num1 har flere cifre
-        {
-          dig1 = int(random(1,9));
-          num1 += dig1*pow(10,i);
-        }
-        else if (i == digits1-1 && num2>num1) {// til det forreste ciffer. Sørger for at resultatet ikke er negativt
-          // dette kører aldrig?
-          dig1 = int(random(0, 9));
-          dig2 = int(random(0, dig1));
-          num1 += dig1*pow(10,i);
-          num2 += dig2*pow(10,i);
-          
-        }
-        else {
-          if (random(1) > carryRatio || num1==0) { // tal giver sammen 0+
-            dig1 = int(random(lowerBound1, 9));
-            dig2 = int(random(lowerBound2, dig1));
-          }
-          else { // tal giver sammen <0
-            dig1 = int(random(lowerBound1, 8));
-            dig2 = int(random(dig1+1, 9));
-          }
-          num1 = num1*10+dig1;
-          num2 = num2*10+dig2;
-          lowerBound1=1;
-        }
-      }  
-      break;
-      
-    case multiplication:
-      for (int i = 0; i < digits1; i++)
+    }
+    break;
+
+  case subtraction:
+    lowerBound1 = 1;
+    lowerBound2 = 1;
+    for (int i=0; i<digits1; i++) {
+      if (digits2 <= i) // hvis num1 har flere cifre
       {
-        
+        dig1 = int(random(1, 9));
+        num1 += dig1*pow(10, i);
+      } else if (i == digits1-1 && num2>num1) {// til det forreste ciffer. Sørger for at resultatet ikke er negativt
+        // dette kører aldrig?
+        dig1 = int(random(0, 9));
+        dig2 = int(random(0, dig1));
+        num1 += dig1*pow(10, i);
+        num2 += dig2*pow(10, i);
+      } else {
+        if (random(1) > carryRatio || num1==0) { // tal giver sammen 0+
+          dig1 = int(random(lowerBound1, 9));
+          dig2 = int(random(lowerBound2, dig1));
+        } else { // tal giver sammen <0
+          dig1 = int(random(lowerBound1, 8));
+          dig2 = int(random(dig1+1, 9));
+        }
+        num1 = num1*10+dig1;
+        num2 = num2*10+dig2;
+        lowerBound1=1;
       }
-  
-      break;
-      
-    case division:
-  
-      break;
+    }  
+    break;
+
+  case multiplication:
+    for (int i = 0; i < digits1; i++)
+    {
+    }
+
+    break;
+
+  case division:
+
+    break;
   }
 
   Task task = new Task(num1, num2, calcType);

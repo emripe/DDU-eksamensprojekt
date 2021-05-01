@@ -89,7 +89,7 @@ class UserData {
     lines[11] = str(starCount);
     saveStrings(userFile, lines);
   }
-  
+
   void saveNewData(float time, Parameters parameter, CalcType calcType) { // tilføj regnetyper, og sørg for at den nye linje bliver gemt det rigtige sted
     String newLine = time/1000+";"+parameter.digits1+";"+parameter.digits2+";"+parameter.carryRatio;
 
