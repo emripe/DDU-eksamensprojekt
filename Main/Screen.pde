@@ -11,6 +11,5 @@ class Screen
   }
   void HandleEvent(ControlEvent theEvent)
   {
-    
   }
 }

@@ -11,7 +11,7 @@ class RulesScreen extends Screen
   PImage mulBog = loadImage("MultiplikationsBog.png");
   PImage divBog = loadImage("DivisionsBog.png");
   int s = 250;
-  
+
   RulesScreen()
   {
     background(249, 158, 184);
@@ -19,7 +19,7 @@ class RulesScreen extends Screen
       .setActive(color(255, 153, 176))
       .setBackground(color(224, 99, 145))
       .setForeground(color(255, 123, 166));
-      
+
     addition
       .setPosition(100, s)
       .setSize(217, s)
@@ -49,10 +49,10 @@ class RulesScreen extends Screen
       .setSize(200, 50)
       .setColor(cA)
       .setFont(DefaultFont);
-    
+
     AddHiddenButtons();
   }
-  
+
   void Close()
   {
     addition.remove();
@@ -82,17 +82,17 @@ class RulesScreen extends Screen
     if (theEvent.getController().getName() == "subtraktion")
     {
       Close();
-      currentScreen = new subtraktion();
+      currentScreen = new Subtraktion();
     }
     if (theEvent.getController().getName() == "multiplikation")
     {
       Close();
-      currentScreen = new multiplikation();
+      currentScreen = new Multiplikation();
     }
     if (theEvent.getController().getName() == "division")
     {
       Close();
-      currentScreen = new division();
+      currentScreen = new Division();
     }
   }
 }

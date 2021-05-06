@@ -43,7 +43,7 @@ class LoginScreen extends Screen
   void Update()
   {
     background(landscape);
-    
+
     nameInput = Username.getText();
     passInput = Password.getText();
   }
