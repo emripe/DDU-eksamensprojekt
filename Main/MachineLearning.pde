@@ -3,7 +3,7 @@
   int minDataPoints = 5;
   float targetTime = 15;
   
-  // genererer parametre til opgaver. tager tid og parametre sammen som parameter
+  // genererer parametre til opgaver. tager tid og parametre sammen som input
   Parameters GenerateParameters(TimeParametersPair tpPair)
   {
     Parameters baseParams = tpPair.params;
@@ -33,7 +33,7 @@
     else
     {
       // varians afhænger af, hvor langt svaret er fra målet. max 1
-      float maxVariation = constrain(pow((targetTime-time)/targetTime,1.5), 0, 1);
+      float maxVariation = constrain(pow((targetTime-time)/targetTime,1.5), 0.05, 1);
       digits1 = max(0.5, random(baseParams.digits1-maxVariation, baseParams.digits1+maxVariation));
       digits2 = max(0.5, random(baseParams.digits2-maxVariation, baseParams.digits2+maxVariation));
       // første tal vil altid være størst
