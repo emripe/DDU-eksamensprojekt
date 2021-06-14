@@ -80,7 +80,6 @@ class PieChart
 
     data[0] = (correct/total)*360;
     data[1] = ((total-correct)/total)*360;
-    println(data[0] + ", " + data[1]);
   }
 
   void Draw()

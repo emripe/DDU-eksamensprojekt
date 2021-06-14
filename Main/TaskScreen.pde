@@ -275,8 +275,6 @@ class TaskScreen extends Screen
   void HandleEvent(ControlEvent theEvent)
   {
     button.play();
-    println("event " + theEvent.getController().getName());
-
     switch (theEvent.getController().getName())
     {
     case  "Button 0":
@@ -382,7 +380,6 @@ class TaskScreen extends Screen
           // save time to times list
           times[taskIndex] = millis() - startTime;
           times[taskIndex] = millis() - startTime;
-          //println("time: " + times[taskIndex]);
 
 
           if (taskIndex == 4)
@@ -395,7 +392,6 @@ class TaskScreen extends Screen
             for (int i = 0; i < 5; i++)
               avg += times[i];
             avg /= 5;
-            println("avg: " + avg);
 
 
             // save average and params
